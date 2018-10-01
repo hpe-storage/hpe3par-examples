@@ -182,6 +182,7 @@ drwxr-xr-x. 2 root root  254 Sep 26 13:00 img
 drwxr-xr-x. 2 root root  116 Sep 26 09:23 properties
 -rw-r--r--. 1 root root 2219 Sep 26 13:00 README.md
 -rw-r--r--. 1 root root 2065 Sep 26 09:23 virtual_domains_demo_3par_admin.yml
+-rw-r--r--. 1 root root 2065 Sep 26 09:23 virtual_domains_demo_3par_create-domain-users_cli.yml
 -rw-r--r--. 1 root root 1847 Sep 26 09:23 virtual_domains_demo_3par_user.yml
 ```
 
@@ -412,6 +413,7 @@ drwxr-xr-x. 2 root root  254 Sep 26 13:00 img
 drwxr-xr-x. 2 root root  116 Sep 26 09:23 properties
 -rw-r--r--. 1 root root 2219 Sep 26 13:00 README.md
 -rw-r--r--. 1 root root 2065 Sep 26 09:23 virtual_domains_demo_3par_admin.yml
+-rw-r--r--. 1 root root 2065 Sep 26 09:23 virtual_domains_demo_3par_create-domain-users_cli.yml
 -rw-r--r--. 1 root root 1847 Sep 26 09:23 virtual_domains_demo_3par_user.yml
 ```
 
@@ -505,7 +507,7 @@ In the `tasks` section, for example in the **Create Volume** task, you can use t
 
 We have 4 main tasks in this example.
 
-These tasks are taken from the main associated (CPG, Host, Volume, etc) playbooks found in the [https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks](https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks).
+These tasks are taken from the main (CPG, Host, Volume, etc) playbooks found in the 3PAR Storage Module here:  [https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks](https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks).
 
 Please refer to the [Modules README](https://github.com/HewlettPackard/hpe3par_ansible_module/blob/master/Modules/readme.md) for detailed information on each Module including optional parameters.
 
