@@ -1,0 +1,53 @@
+---
+- name: Virtual Domains on 3PAR Ansible Demo playbook - Admin
+  hosts: localhost
+
+  vars:
+    cpg_name: 'bob_cpg_FC_r6'
+    host_name: 'scom.virtware.co'
+    domain: 'bob_domain'
+    iscsi_names: 'iqn.1991-05.com.microsoft:scom.virtware.co'
+
+  tasks:
+    - name: Load Storage System Vars
+      include_vars: 'properties/storage_system_properties.yml'
+
+    - name: Create CPG "{{ cpg_name }}"
+      hpe3par_cpg:
+        # 3PAR CPG options found here: https://github.com/HewlettPackard/hpe3par_ansible_module#modules
+        storage_system_ip: "{{ storage_system_ip }}"
+        storage_system_username: "{{ storage_system_username }}"
+        storage_system_password: "{{ storage_system_password }}"
+        state: present
+        domain: "{{ domain }}"
+        cpg_name: "{{ cpg_name }}"
+        growth_increment: 32.5
+        growth_increment_unit: GiB
+        growth_limit: 100
+        growth_limit_unit: GiB
+        growth_warning: 90
+        growth_warning_unit: GiB
+        raid_type: R6
+        set_size: 6
+        high_availability: MAG
+        disk_type: FC
+
+    - name: Create Host "{{ host_name }}"
+      hpe3par_host:
+        # 3PAR Host options found here: https://github.com/HewlettPackard/hpe3par_ansible_module#modules
+        storage_system_ip: "{{ storage_system_ip }}"
+        storage_system_username: "{{ storage_system_username }}"
+        storage_system_password: "{{ storage_system_password }}"
+        state: present
+        host_name: "{{ host_name }}"
+        host_domain: "{{ domain }}"
+        host_persona: WINDOWS_SERVER
+
+    - name: Add iSCSI paths to Host "{{ host_name }}"
+      hpe3par_host:
+        storage_system_ip: "{{ storage_system_ip }}"
+        storage_system_username: "{{ storage_system_username }}"
+        storage_system_password: "{{ storage_system_password }}"
+        state: add_iscsi_path_to_host
+        host_name: "{{ host_name }}"
+        host_iscsi_names: "{{ iscsi_names }}"

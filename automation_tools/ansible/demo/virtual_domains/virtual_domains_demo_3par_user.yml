@@ -1,0 +1,52 @@
+---
+- name: Virtual Domains on 3PAR Ansible Demo playbook - Bob User
+  hosts: localhost
+
+  vars:
+    volume_name: 'bob_demo_volume'
+    cpg_name: 'bob_cpg_FC_r6'
+    host_name: 'scom.virtware.co'
+    domain: 'bob_domain'
+    vol_size: 10
+    vol_size_unit: 'GiB'
+    autolun: False
+    lunid: 110
+
+  tasks:
+    - name: Load Storage System Vars
+      include_vars: 'properties/storage_system_properties_bob.yml'
+
+    - name: Load VolumeSet Vars
+      include_vars: 'properties/volumeset_properties.yml'
+
+    - name: Create Volume "{{ volume_name }}"
+      hpe3par_volume:
+        storage_system_ip: "{{ storage_system_ip }}"
+        storage_system_username: "{{ storage_system_username }}"
+        storage_system_password: "{{ storage_system_password }}"
+        state: present
+        volume_name: "{{ item }}"
+        cpg: "{{ cpg_name }}"
+        size: "{{ vol_size }}"
+        size_unit: "{{ vol_size_unit }}"
+      with_items: "{{ ['volume_bob_1', 'volume_bob_2', 'volume_bob_3'] }}"
+
+    - name: Create volume set "{{ volumeset_name }}"
+      hpe3par_volumeset:
+        storage_system_ip: "{{ storage_system_ip }}"
+        storage_system_username: "{{ storage_system_username }}"
+        storage_system_password: "{{ storage_system_password }}"
+        state: present
+        volumeset_name: "{{ volumeset_name }}"
+        setmembers: "{{ add_vol_setmembers }}"
+
+    - name: Create VLUN
+      hpe3par_vlun:
+        storage_system_ip: "{{ storage_system_ip }}"
+        storage_system_username: "{{ storage_system_username }}"
+        storage_system_password: "{{ storage_system_password }}"
+        state: export_volumeset_to_host
+        volume_set_name: "{{ volumeset_name }}"
+        host_name: "{{ host_name }}"
+        lunid: "{{ lunid }}"
+        autolun: "{{ autolun }}"

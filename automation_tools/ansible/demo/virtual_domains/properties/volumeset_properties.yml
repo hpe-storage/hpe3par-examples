@@ -1,0 +1,2 @@
+volumeset_name: "bob_volumeset"
+add_vol_setmembers: ['volume_bob_1', 'volume_bob_2', 'volume_bob_3']
