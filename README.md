@@ -18,8 +18,9 @@ virtual domains: Using the SSMC/CLI & HPE 3PAR Ansible Module with Virtual Domai
 
 ## Docker/Container Integrations:
 
-OpenShift:
-Docker Enterprise Edition: 
+[Docker](containers/README.md)
+[OpenShift/Kubernetes](containers/kubernetes-openshift/README.md)
+
 
 ### License
 This software is [licensed](LICENSE) under Apache 2.0.
