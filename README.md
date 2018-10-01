@@ -13,7 +13,8 @@ This is a collective repository of examples used for HPE 3PAR Storage container 
 
 ## Automation Examples
 
-virtual domains: Using the SSMC/CLI & HPE 3PAR Ansible Module with Virtual Domains in a Multi-Tenant scenario , blog post available [here](https://hpe-developer.8ar.ms/blog/using-the-ssmc-cli-hpe-3par-ansible-module-with-virtual-domains).
+* **Virtual Domains**: Using the SSMC/CLI & HPE 3PAR Ansible Module with Virtual Domains in a Multi-Tenant scenario
+  * blog post available [here](https://hpe-developer.8ar.ms/blog/using-the-ssmc-cli-hpe-3par-ansible-module-with-virtual-domains).
 
 
 ## Docker/Container Integrations:
