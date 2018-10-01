@@ -18,8 +18,8 @@ virtual domains: Using the SSMC/CLI & HPE 3PAR Ansible Module with Virtual Domai
 
 ## Docker/Container Integrations:
 
-[Docker](containers/README.md)
-[OpenShift/Kubernetes](containers/kubernetes-openshift/README.md)
+* [Docker](containers/README.md)
+* [OpenShift/Kubernetes](containers/kubernetes-openshift/README.md)
 
 
 ### License
