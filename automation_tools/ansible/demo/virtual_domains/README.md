@@ -41,37 +41,37 @@ The first steps to setting up your 3PAR for multi-tenancy is to create a new vir
 
 1. Login into the SSMC with Super user access.  
 
-![SSMC Login](/demo/virtual_domains/img/ssmc_login.jpg)
+![SSMC Login](img/ssmc_login.jpg)
 
 2. In the mega menu, click **Show All > Domains**
 
-![Domains](/demo/virtual_domains/img/3par_domains.jpg)
+![Domains](img/3par_domains.jpg)
 
 3. Click **Create domain**
 
-![Create Domain](/demo/virtual_domains/img/3par_domains_create.jpg)
+![Create Domain](img/3par_domains_create.jpg)
 
 4. Enter the name of the domain. In this example, `bob_domain`. Then click **Add systems**. Specify the **3PAR** where the domain will be created. Once complete, click **Create**.<a name="bob"></a>
 
 >You may ask why I am using Bob, because everyone knows Bob is cool!<a name="bob"></a>
 
-![Create Domain](/demo/virtual_domains/img/3par_domains_create_bob_65.jpg)
+![Create Domain](img/3par_domains_create_bob_65.jpg)
 
 5. In the mega menu, click **Show All > Users**
 
-![Users](/demo/virtual_domains/img/3par_users_menu.jpg)
+![Users](img/3par_users_menu.jpg)
 
 6. Click **Create User**
 
-![Create User](/demo/virtual_domains/img/create_user.jpg)
+![Create User](img/create_user.jpg)
 
 7. Specify the **NEW** user name and password.
 
-![Create bob_user](/demo/virtual_domains/img/create_user_bob_65.jpg)
+![Create bob_user](img/create_user_bob_65.jpg)
 
 8. Click **Add Authorizations**, choose the domain created previously (`bob_domain` on **virt-3par** system). Choose the **edit** Role for the user. Click Add.
 
-![Authorizations](/demo/virtual_domains/img/add_authorization.jpg)
+![Authorizations](img/add_authorization.jpg)
 
 #### Repeat these steps as necessary to configure additional Domains and Users within your 3PAR.
 
@@ -119,16 +119,23 @@ Also everything else from this point will be able to be done via the HPE 3PAR An
 
 #### Let's get started.
 
-Clone the repo to get access to the Virtual Domain demo.
+First, we need to make sure we have the 3PAR storage module for Ansible downloaded.
 
+Clone the HPE 3PAR Ansible Storage Modules
 ```
-https://github.com/budhac/hpe3par_ansible_module
+https://github.com/HewlettPackard/hpe3par_ansible_module
 ```
 
 Install the HPE 3PAR Python SDK
 
 ```
 pip install hpe3par_sdk
+```
+
+Now, clone the `hpe3par-examples` repo to get access to the Virtual Domain demo.
+
+```
+https://github.com/hpe-storage/hpe3par-examples
 ```
 
 
@@ -157,7 +164,7 @@ library        = /root/workspace/hpe3par_ansible_module/Modules
 
 #### Understanding the 3PAR Ansible playbooks<a name="understanding"></a>
 
-Navigate to the `hpe3par_ansible/demo/virtual_domains` folder. Here we will find two Ansible playbooks and the `properties/` folder.
+Navigate to the `hpe3par_examples/automation_tools/ansible/demo/virtual_domains` folder. Here we will find two Ansible playbooks and the `properties/` folder.
 
 * **virtual_domains_demo_3par_admin.yml**
 * **virtual_domains_demo_3par_user.yml**
@@ -165,7 +172,7 @@ Navigate to the `hpe3par_ansible/demo/virtual_domains` folder. Here we will find
 * **properties/storage_system_properties_bob.yml** (This is configuration files containing the 3PAR IP address, Domain user username and password for the 3PAR array)
 
 ```
-cd ~/workspace/hpe3par_ansible/demo/virtual_domains
+cd ~/workspace/hpe3par_examples/automation_tools/ansible/
 
 [root@ansible-host virtual_domains]# ls -la
 total 12
@@ -388,10 +395,10 @@ This section will follow closely to my other blog post about using the Ansible m
 
 Let's take a look at our Ansible playbooks again. Since we have everything ready for us on the array, it is very simple to run the playbooks as a user. The example playbook is a simple demonstration on how you can turn your **Infrastructure into Code**.
 
-* Navigate to the `hpe3par_ansible/demo/virtual_domains` folder.
+* Navigate to the `hpe3par_examples/automation_tools/ansible/demo/virtual_domains` folder.
 
 ```
-cd hpe3par_ansible/demo/virtual_domains
+cd hpe3par_examples/automation_tools/ansible/demo/virtual_domains
 ```
 
 Here we will find the `virtual_domains_demo_3par_user.yml` playbook and the `properties/storage_system_properties_bob.yml` (This file contains the 3PAR IP address, 3PAR Domain user username/password).
@@ -558,14 +565,14 @@ Now let's verify that these volumes have been exported to the Host.
 
 2. Click on **Virtual Volumes**. You should see 3 volumes and also see that they are successfully exported to **scom.virtware.co**
 
-![Success SSMC](/demo/virtual_domains/img/ssmc_success.jpg)
+![Success SSMC](img/ssmc_success.jpg)
 
 
 Now let's check **scom.virtware.co**
 
 >You may need to perform a **Rescan Disks** to see the new volumes.
 
-![Success SCOM](/demo/virtual_domains/img/scom_success.jpg)
+![Success SCOM](img/scom_success.jpg)
 
 You should be able to see all of the volumes available to the Windows Server.
 
