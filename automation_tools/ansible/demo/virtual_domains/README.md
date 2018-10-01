@@ -102,9 +102,9 @@ For example:
       shell: /usr/bin/sshpass -p 3pardata ssh -oStrictHostKeyChecking=no 3paradm@192.168.1.50 "createuser -c Password1 bob_user bob_domain edit"
       register: users    
 
-      - name: print users
-        debug:
-          msg: "{{ users }}"
+    - name: print users
+      debug:
+        msg: "{{ users }}"
 ```
 
 &nbsp;  
@@ -121,12 +121,12 @@ Also everything else from this point will be able to be done via the HPE 3PAR An
 
 First, we need to make sure we have the 3PAR storage module for Ansible downloaded.
 
-Clone the HPE 3PAR Ansible Storage Modules
+1. Clone the HPE 3PAR Ansible Storage Modules
 ```
 https://github.com/HewlettPackard/hpe3par_ansible_module
 ```
 
-Install the HPE 3PAR Python SDK
+2. Install the HPE 3PAR Python SDK
 
 ```
 pip install hpe3par_sdk
@@ -327,9 +327,9 @@ Also you can specify an external variables file like the `storage_system_propert
 
 We have 4 main tasks in this example.
 
-These tasks are taken from the main associated (CPG, Host, Volume, etc) playbooks found in the [https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks](https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks).
+These tasks are taken from the main (CPG, Host, Volume, etc) playbooks found in the 3PAR Storage Module here: [https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks](https://github.com/HewlettPackard/hpe3par_ansible_module/tree/master/playbooks).
 
-Please refer to the [Modules README](https://github.com/HewlettPackard/hpe3par_ansible_module/blob/master/Modules/readme.md) for detailed information on each Module including optional parameters.
+Please refer to the [Modules README](https://github.com/HewlettPackard/hpe3par_ansible_module/blob/master/Modules/readme.md) for detailed information on each Module including required/optional parameters.
 
 1. **Load Storage System Vars** (load the encrypted storage system IP, username/password)
 2. **Create CPG** (create CPGs per the provided specifications)
