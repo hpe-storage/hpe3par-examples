@@ -1,4 +1,4 @@
-# How to deploy etcd with an external mounted volume
+# How to deploy etcd with an external volume
 
 Use Case: In our standard install guide, we deploy etcd for the HPE 3PAR Docker Volume plugin. The data within etcd is critical for the health and stability of your Docker deployments and the recovery of your environment in the case of disaster. Etcd contains all of the metadata for the 3PAR volumes in use within your Docker/Kubernetes/OpenShift environments. We will be looking at how to ensure that you are protected in the case of a disaster by protecting etcd.
 
