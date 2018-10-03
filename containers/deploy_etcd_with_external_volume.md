@@ -69,7 +69,7 @@ sudo docker run -d -v /usr/share/ca-certificates/:/etc/ssl/certs -v /etcd_data:/
 There are two important flags here.
 
 * **-v /etcd_data:/etcd-data**    
-  * **/etcd_data** is a 3PAR volume mounted to the local Linux filesystem
+  * **/etcd_data** is the mountpoint for a 3PAR volume on the local Linux filesystem
 * **-data-dir=/etcd-data**    
   * **-data-dir** specifies where etcd is to write data
 
