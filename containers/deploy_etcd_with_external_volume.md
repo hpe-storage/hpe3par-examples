@@ -7,7 +7,7 @@ Use Case: In our standard install guide, we deploy etcd for the HPE 3PAR Docker 
 * The **etcd** hosts (on management nodes or external to the environment) have data paths (iSCSI or FC) to the 3PAR array
 * FC or iSCSI is pre-configured on your **etcd** hosts
 
-Currently, in the [install guide](https://github.com/budhac/python-hpedockerplugin/blob/master/docs/quick_start_guide.md), we install etcd in the following manner:
+Currently, in the [install guide](https://github.com/budhac/python-hpedockerplugin/blob/master/docs/quick_start_guide.md), we install **etcd** in the following manner:
 
 #### etcd without external storage
 
@@ -25,11 +25,28 @@ sudo docker run -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 \
 -initial-cluster-state new
 ```
 
-If you note there are no data volumes (**-v /host_directory:/container_directory**) attached to this container, therefore the data is ephemeral. This means that the etcd data (all of the metadata including 3PAR volume mappings to containers) exist only within the containers so as long as the etcd cluster stays healthy, the Docker cluster and your volumes will be happy.
+If you note there are no data volumes (**-v /host_directory:/container_directory**) attached to this container. This means that the **etcd** cluster data (including all of the 3PAR metadata, volume mappings to containers) exists only within the containers and as long as the etcd cluster stays healthy, the Docker environment and plugin along with your Docker volumes will be happy.
 
-Anyone within the datacenter knows that accidents or outages happen, both planned and unplanned. Without a full backup of the etcd hosts, there is a chance to lose data. We also know that full restores of a host (be it physical or virtual) can take a long time.
+Anyone with much IT experience knows that accidents or outages happen, both planned and unplanned. Without a full backup of the **etcd** hosts and your Docker environment, there is a chance data loss and increased outage windows. And the last thing you want is to lose all of the configuration data for your Docker environment.
 
-The better solution here is to redirect the **etcd** to an external volume preferrably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes. This will allow you to recover more quickly because the volume can be mounted onto a new host within minutes.
+Since we are assuming you have protection policies in place for your 3PAR Docker volumes and Docker container states. We need to complete that last mile of protecting your environment by protecting the **etcd** data. The best way to do that is by redirecting the **etcd** data directories to an external volume preferably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes.
+
+1. First things first, you will need to create and export an **etcd** volume (i.e. etcd1_vol) to your **etcd** hosts.
+
+>**Note:** It is best practice, when deploying etcd in a cluster, that you create separate volumes (etcd_node1_vol, etcd_node2_vol, etcd_node3_vol) for each node in the cluster in order to maintain maximum data resiliency.
+
+2. Mount the volume (etcd1_vol) to the etcd host OS.
+
+```
+$ lsblk -f
+NAME                   FSTYPE       LABEL           UUID                                   MOUNTPOINT
+sdb                    mpath_member                 2ce2ce3c-899c-480d-aed2-3bceddc32efa
+└─mpathe               ext4                         2ce2ce3c-899c-480d-aed2-3bceddc32efa   /etcd_data
+sdc                    mpath_member                 2ce2ce3c-899c-480d-aed2-3bceddc32efa
+└─mpathe               ext4                         2ce2ce3c-899c-480d-aed2-3bceddc32efa   /etcd_data
+```
+
+3. Ensure that hpe.conf exists and is configured correctly per [install guide](https://github.com/budhac/python-hpedockerplugin/blob/master/docs/quick_start_guide.md).
 
 #### etcd with external storage
 
@@ -51,6 +68,8 @@ There are two important flags here.
 
 * **-v /etcd_data:/etcd-data**: /etcd_data is a 3PAR volume mounted to the local Linux filesystem
 * **-data-dir=/etcd-data**: -data-dir specifies where etcd is to write data
+
+4. Install the HPE 3PAR Docker volume plugin
 
 By specifying an external 3PAR volume the data is securely written directly to the 3PAR where you can backup/snapshot/clone the volume to ensure that it is protected in the case of a disaster.
 
