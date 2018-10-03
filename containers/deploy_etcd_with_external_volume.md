@@ -27,11 +27,11 @@ sudo docker run -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 \
 -initial-cluster-state new
 ```
 
-If you note there are no data volumes (**-v /host_directory:/container_directory**) attached to this container. This means that the **etcd** cluster data (including all of the 3PAR metadata, volume mappings to containers) exists only within the containers and as long as the etcd cluster stays healthy, the Docker environment and plugin along with your Docker volumes will be happy.
+If you notice, there are no data volumes (**-v /host_directory:/container_directory**) attached to this container. This means that the **etcd** cluster data (including all of the 3PAR metadata, volume mappings to containers) exists only within the containers and as long as the etcd cluster stays healthy, the Docker environment and plugin along with your Docker volumes will be happy.
 
 Anyone with much IT experience knows that accidents or outages happen, both planned and unplanned. Without a full backup of the **etcd** hosts and your Docker environment, there is a chance data loss and increased outage windows. And the last thing you want is to lose all of the configuration data for your Docker environment.
 
-Since we are assuming you have protection policies in place for your 3PAR Docker volumes and Docker container states. We need to complete that last mile of protecting your environment by protecting the **etcd** data. The best way to do that is by redirecting the **etcd** data directories to an external volume preferably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes.
+Since we are assuming you have protection policies in place for your 3PAR Docker volumes and Docker container states. If you don't want to do full backup restores of your **etcd** hosts (which can be very time consuming especially if they are bare-metal), then we need to ensure that we are protecting the **etcd** data. The best way to do that is by redirecting the **etcd** data directories to an external volume preferably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes.
 
 1. First things first, create and export an **etcd** volume (i.e. etcd1_vol) to your **etcd** hosts.
 
