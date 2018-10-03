@@ -31,7 +31,7 @@ If you notice, there are no data volumes (**-v /host_directory:/container_direct
 
 Anyone with much IT experience knows that accidents or outages happen, both planned and unplanned. Without a full backup of the **etcd** hosts and your Docker environment, there is a chance data loss and increased outage windows. And the last thing you want is to lose all of the configuration data for your Docker environment.
 
-Since we are assuming you have protection policies in place for your 3PAR Docker volumes and Docker container states. If you don't want to do full backup restores of your **etcd** hosts (which can be very time consuming especially if they are bare-metal), then we need to ensure that we are protecting the **etcd** data. The best way to do that is by redirecting the **etcd** data directories to an external volume preferably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes.
+Again, we are assuming you have protection policies in place for your 3PAR Docker volumes and Docker container states. If you don't want to do full backup restores of your **etcd** hosts (which can be very time consuming especially if they are bare-metal), then we need to ensure that we are protecting the **etcd** data. The best way to do that is by redirecting the **etcd** data directories to an external volume preferably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes.
 
 1. First things first, create and export an **etcd** volume (i.e. etcd1_vol) to your **etcd** hosts.
 
