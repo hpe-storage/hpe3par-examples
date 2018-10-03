@@ -68,8 +68,8 @@ sudo docker run -d -v /usr/share/ca-certificates/:/etc/ssl/certs -v /etcd_data:/
 
 There are two important flags here.
 
-* **-v /etcd_data:/etcd-data**: /etcd_data is a 3PAR volume mounted to the local Linux filesystem
-* **-data-dir=/etcd-data**: -data-dir specifies where etcd is to write data
+* **-v /etcd_data:/etcd-data**    **/etcd_data** is a 3PAR volume mounted to the local Linux filesystem
+* **-data-dir=/etcd-data**     **-data-dir** specifies where etcd is to write data
 
 4. Install the HPE 3PAR Docker volume plugin
 
