@@ -33,7 +33,7 @@ Anyone with much IT experience knows that accidents or outages happen, both plan
 
 Since we are assuming you have protection policies in place for your 3PAR Docker volumes and Docker container states. We need to complete that last mile of protecting your environment by protecting the **etcd** data. The best way to do that is by redirecting the **etcd** data directories to an external volume preferably on a 3PAR array so that you can apply the same data protection policies already in place within your environment onto your **etcd** data volumes.
 
-1. First things first, you will need to create and export an **etcd** volume (i.e. etcd1_vol) to your **etcd** hosts.
+1. First things first, create and export an **etcd** volume (i.e. etcd1_vol) to your **etcd** hosts.
 
 >**Note:** It is best practice, when deploying etcd in a cluster, that you create separate volumes (**etcd_node1_vol**, **etcd_node2_vol**, **etcd_node3_vol**, etc.) for each node in the cluster in order to maintain maximum data resiliency.
 
