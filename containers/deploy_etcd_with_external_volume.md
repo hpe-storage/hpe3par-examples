@@ -35,7 +35,7 @@ Since we are assuming you have protection policies in place for your 3PAR Docker
 
 1. First things first, you will need to create and export an **etcd** volume (i.e. etcd1_vol) to your **etcd** hosts.
 
->**Note:** It is best practice, when deploying etcd in a cluster, that you create separate volumes (etcd_node1_vol, etcd_node2_vol, etcd_node3_vol) for each node in the cluster in order to maintain maximum data resiliency.
+>**Note:** It is best practice, when deploying etcd in a cluster, that you create separate volumes (**etcd_node1_vol**, **etcd_node2_vol**, **etcd_node3_vol**, etc.) for each node in the cluster in order to maintain maximum data resiliency.
 
 2. Mount the volume (etcd1_vol) to the etcd host OS.
 
