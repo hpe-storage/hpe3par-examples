@@ -6,9 +6,15 @@ We will the basic steps to create volumes and then setup the Remote Copy group a
 
 First let's cover some housekeeping.
 
-1. I am assuming that you already have at least two 3PARs within your environment and that the appropriate networking and storage zoning has been configured between arrays.
+1. Basic knowledge of Ansible and working with modules.
 
-2. You need to be on the latest version of the HPE 3PAR Ansible module.
+2. I am assuming that you already have at least two 3PARs within your environment and that the appropriate networking, storage zoning, and remote copy links have been configured between arrays. The HPE 3PAR Ansible module supports both FC and iSCSI environments.
+
+For more information on configuring Remote Copy, refer to the HPE 3PAR Remote Copy User Guide:
+
+https://h20628.www2.hp.com/km-ext/kmcsdirect/emr_na-c03618143-21.pdf
+
+3. You need to be on the latest version of the HPE 3PAR Ansible module.
 
 Verify you have at least **hpe3par-sdk version >1.2.0** and **python-3parclient >4.2.8** or higher.
 ```
@@ -31,9 +37,9 @@ git pull https://github.com/HewlettPackard/hpe3par_ansible_module/
 pip install –U hpe3par_sdk
 ```
 
+###Getting Started
 
-
-  * Clone the demo repo:
+Once we have everything setup, let's get started by cloning the replication demo repo:
 
 ```
 git clone https://github.com/hpe-storage/hpe3par-examples
