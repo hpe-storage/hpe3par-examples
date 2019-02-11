@@ -18,7 +18,7 @@ First let's cover some housekeeping.
 
 Verify you have at least **hpe3par-sdk version >1.2.0** and **python-3parclient >4.2.8** or higher.
 ```
-[root@ansible playbooks]# pip list | grep 3par
+[root@ansible workspace]# pip list | grep 3par
 hpe3par-sdk (1.2.0)
 python-3parclient (4.2.8)
 ```
@@ -64,7 +64,7 @@ storage_system_password_target: "3pardata"
   * Use Ansible vault to encrypt the properties file. **Gotta keep those passwords safe!**
 
 ```
-[root@ansible playbooks]# ansible-vault encrypt properties/remote_copy_properties.yml
+[root@ansible 3par_replication]# ansible-vault encrypt properties/remote_copy_properties.yml
 New Vault password:
 Confirm New Vault password:
 
@@ -92,7 +92,7 @@ ansible-playbook remote_copy_demo.yml --ask-vault-pass
 You should see something like this:
 
 ```yaml
-[root@virt-ansible playbooks]# ansible-playbook remote_copy_demo.yml --ask-vault-pass
+[root@virt-ansible 3par_replication]# ansible-playbook remote_copy_demo.yml --ask-vault-pass
 Vault password:
 
 PLAY [localhost] ********************************************************************************
