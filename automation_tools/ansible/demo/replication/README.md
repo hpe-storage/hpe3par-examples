@@ -71,7 +71,7 @@ Confirm New Vault password:
 ```
 
 
-  * Modify the remote_copy_demo.yml to match your environment.
+  * Modify the **remote_copy_demo.yml** to match your environment.
 
     * **volume size**
     * **CPG**
