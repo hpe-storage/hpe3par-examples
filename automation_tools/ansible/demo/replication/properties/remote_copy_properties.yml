@@ -1,0 +1,8 @@
+storage_system_ip_source: "192.168.1.150"
+storage_system_name_source: "local-3par"
+storage_system_username_source: "3paradm"
+storage_system_password_source: "3pardata"
+storage_system_ip_target: "192.168.2.150"
+storage_system_name_target: "remote-3par"
+storage_system_username_target: "3paradm"
+storage_system_password_target: "3pardata"
