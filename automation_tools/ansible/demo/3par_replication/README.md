@@ -46,7 +46,7 @@ git clone https://github.com/hpe-storage/hpe3par-examples
 ```
 
 
-  * Navigate to the **automation_tools/ansible/demo/replication** folder
+  * Navigate to the **automation_tools/ansible/demo/3par_replication** folder
 
   * Configure your array details in **properties/remote_copy_properties.yml**
 
