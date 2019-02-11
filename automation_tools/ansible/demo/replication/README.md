@@ -10,7 +10,7 @@ First let's cover some housekeeping.
 
 2. I am assuming that you already have at least two 3PARs within your environment and that the appropriate networking, storage zoning, and remote copy links have been configured between arrays. The HPE 3PAR Ansible module supports both FC and iSCSI environments.
 
-For more information on configuring Remote Copy, refer to the HPE 3PAR Remote Copy User Guide:
+For more information on configuring Remote Copy, refer to the **HPE 3PAR Remote Copy User Guide**:
 
 https://h20628.www2.hp.com/km-ext/kmcsdirect/emr_na-c03618143-21.pdf
 
@@ -37,7 +37,7 @@ git pull https://github.com/HewlettPackard/hpe3par_ansible_module/
 pip install –U hpe3par_sdk
 ```
 
-###Getting Started
+### Getting Started
 
 Once we have everything setup, let's get started by cloning the replication demo repo:
 
