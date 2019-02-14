@@ -2,7 +2,9 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
- name: sc-hpe
+  name: sc-gold
 provisioner: hpe.com/hpe
 parameters:
-  size: "16"
+  provisioning: 'full'
+  cpg: 'SSD_r6'
+  snapcpg: 'FC_r6'
