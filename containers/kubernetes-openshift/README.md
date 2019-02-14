@@ -56,7 +56,7 @@ oc create -f nginx-pod.yml
 
 Wait a few minutes for the pod to create and the volume to mount.
 
-you can watch it's status with:
+You can watch it's status with:
 ```
 oc describe pod pod-nginx
 ```
