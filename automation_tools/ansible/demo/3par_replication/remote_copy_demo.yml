@@ -13,21 +13,7 @@
       size: 10
       size_unit: GiB
       cpg: SSD_r6
-      snap_cpg: SSD_r6
-    with_items: "{{ ['demo_volume_1', 'demo_volume_2'] }}"
-
-
-  - name: Create volume on target
-    hpe3par_volume:
-      storage_system_ip: "{{ storage_system_ip_target }}"
-      storage_system_username: "{{ storage_system_username_target }}"
-      storage_system_password: "{{ storage_system_password_target }}"
-      state: present
-      volume_name: "{{ item }}"
-      size: 10
-      size_unit: GiB
-      cpg: SSD_r6
-      snap_cpg: SSD_r6
+      snap_cpg: FC_r6
     with_items: "{{ ['demo_volume_1', 'demo_volume_2'] }}"
 
   - name: Create Remote Copy Group demo_rcg
@@ -37,9 +23,13 @@
       storage_system_password: "{{ storage_system_password_source }}"
       state: present
       remote_copy_group_name: demo_rcg
+      local_user_cpg: "FC_r1"
+      local_snap_cpg: "FC_r6"
       remote_copy_targets:
-      - target_name: "{{ storage_system_name_target }}"
+      - target_name: virt-3par-8440
         target_mode: sync
+        user_cpg: "SSD_r1"
+        snap_cpg: "SSD_r6"
 
   - name: Add volume to remote copy group
     hpe3par_remote_copy:
@@ -47,10 +37,11 @@
       storage_system_username: "{{ storage_system_username_source }}"
       storage_system_password: "{{ storage_system_password_source }}"
       state: add_volume
+      volume_auto_creation: true
       remote_copy_group_name: demo_rcg
       volume_name: "{{ item }}"
       admit_volume_targets:
-      - target_name: "{{ storage_system_name_target }}"
+      - target_name: virt-3par-8440
         sec_volume_name: "{{ item }}"
     with_items: "{{ ['demo_volume_1', 'demo_volume_2'] }}"
 
