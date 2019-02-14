@@ -107,10 +107,6 @@ TASK [Create volume on source] *************************************************
 changed: [localhost] => (item=demo_volume_1)
 changed: [localhost] => (item=demo_volume_2)
 
-TASK [Create volume on target] ******************************************************************
-changed: [localhost] => (item=demo_volume_1)
-changed: [localhost] => (item=demo_volume_2)
-
 TASK [Create Remote Copy Group demo_rcg] ********************************************************
 changed: [localhost]
 
@@ -130,7 +126,7 @@ TASK [Start remote copy] *******************************************************
 changed: [localhost]
 
 PLAY RECAP **************************************************************************************
-localhost                  : ok=9    changed=5    unreachable=0    failed=0
+localhost                  : ok=8    changed=4    unreachable=0    failed=0
 ```  
 
 Success!
