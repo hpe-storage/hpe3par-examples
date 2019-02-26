@@ -47,18 +47,19 @@ INVENTORY:
   3PAR1:
 #Mandatory Parameters-----------------------------------------------------------------------------------
 
-    # Specify the port to be used by HPE 3PAR plugin etcd cluster
+    # Specify the port to be used by HPE 3PAR plugin etcd cluster---------------------------------------
     host_etcd_port_number: 23790
-    # Plugin Driver - Fibre Channel
-    hpedockerplugin_driver: hpedockerplugin.hpe.hpe_3par_fc.HPE3PARFCDriver
+
+    # Plugin Driver - Choose FC or iSCSI----------------------------------------------------------------
+    hpedockerplugin_driver: hpedockerplugin.hpe.hpe_3par_iscsi.HPE3PARISCSIDriver
+    #hpedockerplugin_driver: hpedockerplugin.hpe.hpe_3par_fc.HPE3PARFCDriver
+
+    # 3PAR Connection Information-----------------------------------------------------------------------
     hpe3par_ip: 192.168.2.50
     hpe3par_username: 3paradm
     hpe3par_password: 3pardata
     hpe3par_cpg: FC_r6
-
-    # Plugin version - Required only in DEFAULT backend
-    volume_plugin: hpestorage/legacyvolumeplugin:3.0
-
+    
 #Optional Parameters------------------------------------------------------------------------------------
 
     # Uncomment encryptor_key to encrypt passwords in hpe.conf
