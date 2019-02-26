@@ -42,9 +42,9 @@ INVENTORY:
     #  hpe3par_username: 3paradm
     #  hpe3par_password: 3pardata
 
-#Additional Backend (Optional)--------------------------------------------------------------------------
+#ADDITIONAL BACKEND (Optional)--------------------------------------------------------------------------
 
-  3PAR1:
+  3PAR2:
 #Mandatory Parameters-----------------------------------------------------------------------------------
 
     # Specify the port to be used by HPE 3PAR plugin etcd cluster---------------------------------------
