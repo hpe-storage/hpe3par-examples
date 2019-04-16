@@ -7,4 +7,4 @@ provisioner: hpe.com/hpe
 parameters:
   provisioning: 'full'
   cpg: 'SSD_r6'
-  snapcpg: 'FC_r6'
+  snapcpg: 'SSD_r6'
