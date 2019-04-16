@@ -9,25 +9,28 @@ Starting with the Storage StorageClass
 
 >Note: the commands below are ran using OpenShift commands, they can swapped with kubectl if running Kubernetes
 
-```
-oc create -f sc_example.yml
+```console
+$ oc create -f sc_example.yml
 
 ```
 
 You can view the details of the StorageClass by running the following command:
-```
-oc describe sc sc-gold
+
+```console
+$ oc describe sc sc-gold
 
 ```
 
 Let's create a PVC
-```
-oc create -f pvc_example.yml
+
+```console
+$ oc create -f pvc_example.yml
 
 ```
 
-You can view the details of the PVC and check to see when it is Bound
-```
+You can view the details of the PVC and check to see when it is **Bound**
+
+```console
 $ oc describe pvc pvc-nginx
 
 Name:          pvc-nginx
@@ -48,34 +51,35 @@ Events:        <none>
 
 Now lets create a pod.
 
-```
+```console
 
-oc create -f nginx-pod.yml
+$ oc create -f nginx-pod.yml
 
 ```
 
 Wait a few minutes for the pod to create and the volume to mount.
 
 You can watch it's status with:
-```
-oc describe pod pod-nginx
+
+```console
+$ oc describe pod pod-nginx
 ```
 
 Now let's log into the pod and write some data.
 
-```
-kubectl exec -it pod-nginx -- /bin/bash
+```console
+$ kubectl exec -it pod-nginx -- /bin/bash
 ```
 
-```
-echo Hello from Kubernetes Storage! > /usr/share/nginx/html/index.html
+```console
+$ echo Hello from Kubernetes Storage! > /usr/share/nginx/html/index.html
 ```
 
 Go ahead and log out of the pod.
 
 Now lets check to see if everything is working properly.
 
-```
+```console
 $ oc describe pod pod-nginx | less
 Name:               pod-nginx
 Namespace:          default
@@ -91,7 +95,7 @@ IP:                 10.130.0.3
 ```
 Look through the oc describe until you find the IP address for the pod. We will need the IP to verify everything is working.
 
-```
+```console
 $ curl 10.130.0.3:80
 
 Hello from Kubernetes Storage!
