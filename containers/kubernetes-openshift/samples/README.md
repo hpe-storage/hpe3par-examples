@@ -81,6 +81,7 @@ Now lets check to see if everything is working properly.
 
 ```console
 $ oc describe pod pod-nginx | less
+
 Name:               pod-nginx
 Namespace:          default
 Priority:           0
