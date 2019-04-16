@@ -68,14 +68,33 @@ kubectl exec -it pod-nginx -- /bin/bash
 ```
 
 ```
-echo Hello from Kubernetes Storage > /usr/share/nginx/html/index.html
+echo Hello from Kubernetes Storage! > /usr/share/nginx/html/index.html
 ```
 
-Lets install curl in the container so we can see if nginx is serving the new webpage.
+Go ahead and log out of the pod.
+
+Now lets check to see if everything is working properly.
 
 ```
-apt-get update && apt-get install curl -y
-curl http://localhost
+$ oc describe pod pod-nginx | less
+Name:               pod-nginx
+Namespace:          default
+Priority:           0
+PriorityClassName:  <none>
+Node:               o-node1.virtware.io/10.10.1.101
+Start Time:         Tue, 16 Apr 2019 14:02:54 -0600
+Labels:             name=nginx-hpe
+Annotations:        openshift.io/scc=anyuid
+Status:             Running
+IP:                 10.130.0.3
 
-Hello from Kubernetes Storage
 ```
+Look through the oc describe until you find the IP address for the pod. We will need the IP to verify everything is working.
+
+```
+$ curl 10.130.0.3:80
+
+Hello from Kubernetes Storage!
+```
+
+If you see the output above, you have successfully create a working persistent volume, claim and pod.
