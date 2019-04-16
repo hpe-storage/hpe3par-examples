@@ -3,6 +3,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: pod-nginx
+  app: nginx-hpe
 spec:
   containers:
   - name: nginx
@@ -17,3 +18,18 @@ spec:
     - name: export
       persistentVolumeClaim:
         claimName: pvc-nginx
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  labels:
+    name: nginx-service
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30080
+  selector:
+    name: nginx-hpe
