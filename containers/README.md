@@ -1,3 +1,4 @@
+```
 ===============================================
 HPE 3PAR Volume Plug-in For Docker: Create Help
 ===============================================
@@ -6,7 +7,8 @@ Create a volume in HPE 3PAR or create a clone of a Docker volume or create a sna
 ---------------------------------
 Create Volume Options:
 ---------------------------------
- -o cpg=x                       x is the User CPG used for provisioning the volume
+ -o cpg=x                       
+   x is the User CPG used for provisioning the volume
  -o snapcpg=x                   x is the Snap CPG used for provisioning the snapshots of the volume
  -o size=x                      x is the size of a Docker volume to be created. Default value is 100 (in GiB)
  -o provisioning=x              x is the provision type of a volume to be created. Valid values are thin, dedup, full with thin as default.
@@ -135,3 +137,4 @@ Create Snapshot Schedule:
 Display available backends:
 ---------------------------------
  -o help=backends               This option displays list of available backends along with their status
+```
