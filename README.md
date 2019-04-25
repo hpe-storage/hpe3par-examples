@@ -20,7 +20,8 @@ This is a collective repository of examples used for HPE 3PAR Storage container 
 ## Docker/Container Integrations:
 
 * [Docker](containers/README.md)
-* [OpenShift/Kubernetes](containers/kubernetes-openshift/README.md)
+* [OpenShift/Kubernetes](containers/kubernetes-openshift/samples/README.md)
+
 
 
 ### License
