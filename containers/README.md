@@ -1,3 +1,13 @@
+### Native Docker usage:
+```
+$ docker volume create -d hpe --name <vol_name>
+```
+
+For additional options, we have an extensive help file available.
+```
+$ docker volume create -d hpe –o help
+```
+
 ```
 ===============================================
 HPE 3PAR Volume Plug-in For Docker: Create Help
