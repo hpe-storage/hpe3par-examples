@@ -1,0 +1,8 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: sc-gold-clone
+provisioner: hpe.com/hpe
+parameters:
+   cloneOf: "sc-gold-2a82c9e5-6213-11e9-8d53-0050569bb07c"

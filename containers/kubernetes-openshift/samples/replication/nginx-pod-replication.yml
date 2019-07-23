@@ -1,0 +1,24 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-nginx-replicated
+  app: nginx-hpe
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: o-node1.virtware.io
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+      name: "http-server"
+    volumeMounts:
+    - name: export
+      mountPath: "/usr/share/nginx/html"
+  volumes:
+    - name: export
+      persistentVolumeClaim:
+        claimName: pvc-replication-nginx
+
+

@@ -1,0 +1,10 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: sc-replicated-vol
+provisioner: hpe.com/hpe
+parameters:
+  provisioning: 'full'
+  replicationGroup: 'nginx-replicated-app'
+

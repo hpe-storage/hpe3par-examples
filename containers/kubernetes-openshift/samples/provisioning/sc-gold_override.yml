@@ -1,0 +1,11 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: sc-gold
+provisioner: hpe.com/hpe
+parameters:
+  compression: 'true'
+  cpg: 'SSD_r6'
+  fsOwner: '1001:1001'
+  allowOverrides: provisioning,compression,cpg

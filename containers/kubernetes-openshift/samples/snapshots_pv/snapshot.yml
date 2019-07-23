@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-1
+spec:
+    capacity:
+      storage: 20Gi
+    accessModes:
+    - ReadWriteOnce
+    flexVolume:
+      driver: hpe.com/hpe
+      options:
+        name: pv-1
+        virtualCopyOf: "sc-gold-2a82c9e5-6213-11e9-8d53-0050569bb07c"
+    storageClassName: manual

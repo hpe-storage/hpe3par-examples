@@ -1,0 +1,36 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-nginx-snap
+  app: nginx-hpe-snap
+spec:
+  containers:
+  - name: nginx-snap
+    image: nginx
+    ports:
+    - containerPort: 80
+      name: "http-server"
+    volumeMounts:
+    - name: export
+      mountPath: "/usr/share/nginx/html"
+  volumes:
+    - name: export
+      persistentVolumeClaim:
+        claimName: task-pv-claim
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-snap
+  labels:
+    name: nginx-service-snap
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30081
+  selector:
+    name: nginx-hpe-snap
+

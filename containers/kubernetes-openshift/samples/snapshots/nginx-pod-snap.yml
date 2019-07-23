@@ -1,0 +1,21 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-nginx-snap
+  app: nginx-hpe-snap
+spec:
+  containers:
+  - name: nginx-snap
+    image: nginx
+    ports:
+    - containerPort: 80
+      name: "http-server"
+    volumeMounts:
+    - name: export
+      mountPath: "/usr/share/nginx/html"
+  volumes:
+    - name: export
+      persistentVolumeClaim:
+        claimName: snap-sc-gold-pvc
+

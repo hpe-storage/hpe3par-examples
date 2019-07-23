@@ -1,0 +1,12 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: sc-sample
+provisioner: hpe.com/hpe
+parameters:
+  provisioning: 'full'
+  cpg: 'SSD_r6'
+  backend: '3PAR_all_flash'
+  replicationGroup: 'mongodb-app'
+
