@@ -3,7 +3,6 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: pod-nginx
-  app: nginx-hpe
 spec:
   containers:
   - name: nginx
