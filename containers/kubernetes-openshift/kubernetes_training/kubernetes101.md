@@ -32,4 +32,4 @@ This is everything. All components that make up a Kubernetes deployment. This in
 * **Ingress:** Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster via Ingress Controllers. Traffic routing is controlled by rules defined on the Ingress resource.
 
 
-**NEXT:** [Get to know your k8s cluster](get-to-know-cluster.md)
+**NEXT:** [Get to know your k8s cluster](get_to_know_cluster.md)
