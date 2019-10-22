@@ -1,13 +1,13 @@
-## Installing Helm
+# Exercise 4: Installing Helm
 
 Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application. There are two parts to Helm: The Helm client (helm) and the Helm server (Tiller). This guide shows how to install the client, and then proceeds to show two ways to install the server.
 
 For more information, please refer to [https://helm.sh/docs/](https://helm.sh/docs/)
 
-### INSTALLING THE HELM CLIENT
+## INSTALLING THE HELM CLIENT
 The Helm client can be installed either from source, or from pre-built binary releases.
 
-### From the Binary Releases
+## From the Binary Releases
 Every release of Helm provides binary releases for a variety of OSes. These binary versions can be manually downloaded and installed.
 
 1. Download your desired version
@@ -16,15 +16,15 @@ Every release of Helm provides binary releases for a variety of OSes. These bina
 
 From there, you should be able to run the client: `helm help`.
 
-### From Chocolatey (Windows)
+## From Chocolatey (Windows)
 ```
 choco install kubernetes-helm
 ```
 
-### INSTALLING TILLER
+## INSTALLING TILLER
 Tiller, the server portion of Helm, typically runs inside of your Kubernetes cluster.
 
-###Easy In-Cluster Installation
+## Easy In-Cluster Installation
 The easiest way to install `tiller` into the cluster is simply to run:
 ```
 helm init
@@ -35,6 +35,6 @@ This will validate that helm’s local environment is set up correctly (and set 
 After helm init, you should be able to run `kubectl get pods --namespace kube-system` and see Tiller running.
 
 
-**PREVIOUS:** [Installing Kubernetes Dashboard](dashboard.md)
+**PREVIOUS:** [Exercise 3: Deploy your first pod](deploy_first_pod.md)
 
-**NEXT:** [Deploy Your First Pod](deploy_first_pod.md)
+**NEXT:** [Exercise 5: Deploy HPE 3PAR Volume Plugin for Docker](3par_volume_plugin_install.md) or [Deploy HPE Nimble Volume Plugin for Docker](nimble_volume_plugin_install.md)

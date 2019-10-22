@@ -1,6 +1,6 @@
-### Accessing the Dashboard UI:
+# Exercise 2: Install Kubernetes Dashboard
 
-### Command line proxy
+## Command line proxy
 You can access Dashboard using the kubectl command-line tool by running the following command:
 ```
 kubectl proxy
@@ -16,7 +16,7 @@ To protect your cluster data, Dashboard deploys with a minimal RBAC configuratio
 
 Open a second terminal, if you don't have one open already.
 
-### Create the Admin Service Account
+## Create the Admin Service Account
 
 >Warning: The admin user created in the tutorial will have administrative privileges and is for educational purposes only.
 
@@ -62,7 +62,7 @@ Run `kubectl apply`:
 # kubectl apply -f dashboard-adminuser.yml
 ```
 
-### Get Token
+## Get Token
 
 Now we are ready to get the token from the admin-user in order to log into the dashboard. Run the following command:
 
@@ -105,6 +105,6 @@ Paste it into the dashboard form then Click - Sign In.
 Courtesy: [https://medium.com/@kanrangsan/creating-admin-user-to-access-kubernetes-dashboard-723d6c9764e4](https://medium.com/@kanrangsan/creating-admin-user-to-access-kubernetes-dashboard-723d6c9764e4)
 
 
-**PREVIOUS:** [Get to know your k8s cluster!](get_to_know_cluster.md)
+**PREVIOUS:** [Exercise 1: Get to know your k8s cluster!](get_to_know_cluster.md)
 
-**NEXT:** [Installing Helm](install_helm.md)
+**NEXT:** [Exercise 3: Deploy your first pod](deploy_first_pod.md)

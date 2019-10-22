@@ -1,14 +1,14 @@
-## Kubernetes 101
+# Exercise 1: Get to know your Kubernetes cluster
 
 All of this information is taken from the official documentation found on  [kubernetes.io/docs](https://kubernetes.io/docs/)
 
-### Overview of kubectl
+## Overview of kubectl
 
 The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs. For a complete list of kubectl operations, see [Overview of kubectl](https://kubernetes.io/docs/reference/kubectl/overview/).
 
 For more information on how to install and setup `kubectl` on Linux, Windows or MacOS, see [Install and Set Up kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-### Syntax
+## Syntax
 Use the following syntax to run kubectl commands from your terminal window:
 
 `kubectl [command] [TYPE] [NAME] [flags]`
@@ -29,7 +29,7 @@ where `command`, `TYPE`, `NAME`, and `flags` are:
 [Kubernetes Cheat Sheet](Kubernetes-Cheat-Sheet.pdf) - Courtesy of Linux Academy
 
 
-### Getting to know your cluster:
+## Getting to know your cluster:
 
 Let's run through some simple kubectl commands to get familiar with your cluster.
 
@@ -80,4 +80,4 @@ kubectl get pods
 
 **PREVIOUS:** [Kubernetes 101](kubernetes101.md)
 
-**NEXT:** [Installing Kubernetes Dashboard](dashboard.md)
+**NEXT:** [Exercise 2: Installing Kubernetes Dashboard](dashboard.md)

@@ -1,4 +1,4 @@
-## Deploying our first Pod
+# Exercise 3: Deploy your first pod
 
 
 A pod is a collection of containers sharing a network and mount namespace and is the basic unit of deployment in Kubernetes. All containers in a pod are scheduled on the same node.
@@ -130,6 +130,6 @@ kubectl exec -it first-nginx-pod-5d77bbb868-k48zk /bin/bash
 ```
 
 
-**PREVIOUS:** [Installing Helm](install_helm.md)
+**PREVIOUS:** [Exercise 2: Install Kubernetes Dashboard](dashboard.md)
 
-**NEXT:** [Deploying app with Helm](deploy_app_helm.sh)
+**NEXT:** [Exercise 4: Installing Helm](install_helm.md)
