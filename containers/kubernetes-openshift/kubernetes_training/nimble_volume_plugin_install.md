@@ -1,4 +1,4 @@
-# Install the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin 3.0
+# Exercise 5: Install the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin 3.0
 
 Adapted from Michael Mattsson's post on HPE Storage Tech Insiders: [Released: HPE Volume Driver for Kubernetes FlexVolume Plugin 3.0 and more!](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/Released-HPE-Volume-Driver-for-Kubernetes-FlexVolume-Plugin-3-0/ba-p/7063875#.Xa87O-hKiUk)
 
