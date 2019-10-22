@@ -5,7 +5,7 @@ We will go over some basic concepts of Kubernetes before getting started with a 
 The flow of the guide will be as follows:
 
 * [Kubernetes 101](kubernetes101.md)
-* [Exercise 1: Get to know your Kubernetes cluster](get-to-know-cluster.md)
+* [Exercise 1: Get to know your Kubernetes cluster](get_to_know_cluster.md)
 * [Exercise 2: Install Kubernetes Dashboard](dashboard.md)
 * [Exercise 3: Deploy your first pod](deploy_first_pod.md)
 * [Exercise 4: Installing Helm](install_helm.md)
