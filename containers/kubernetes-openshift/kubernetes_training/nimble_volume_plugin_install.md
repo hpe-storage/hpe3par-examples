@@ -1,6 +1,6 @@
 # Exercise 5: Install the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin 3.0
 
-Adapted from Michael Mattsson's post on HPE Storage Tech Insiders: [Released: HPE Volume Driver for Kubernetes FlexVolume Plugin 3.0 and more!](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/Released-HPE-Volume-Driver-for-Kubernetes-FlexVolume-Plugin-3-0/ba-p/7063875#.Xa87O-hKiUk)
+>Adapted from Michael Mattsson's post on HPE Storage Tech Insiders: [Released: HPE Volume Driver for Kubernetes FlexVolume Plugin 3.0 and more!](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/Released-HPE-Volume-Driver-for-Kubernetes-FlexVolume-Plugin-3-0/ba-p/7063875#.Xa87O-hKiUk)
 
 We’ve vastly improved the delivery mechanism of the integrations by enabling Kubernetes administrators to deploy and manage the FlexVolume Driver and Dynamic Provisioner as native Kubernetes workloads. The workloads themselves may be declared directly with kubectl or deployed with Helm — the package manager for Kubernetes applications.
 
