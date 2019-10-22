@@ -4,7 +4,9 @@
 
 We’ve vastly improved the delivery mechanism of the integrations by enabling Kubernetes administrators to deploy and manage the FlexVolume Driver and Dynamic Provisioner as native Kubernetes workloads. The workloads themselves may be declared directly with kubectl or deployed with Helm — the package manager for Kubernetes applications.
 
-Detailed instructions are available in the FlexVolume Driver GitHub repository on how to deploy the integration either standalone or using Helm. An example installation workflow on GKE On-Prem could look like this (assuming Tiller has been installed and is working in your cluster):
+Detailed instructions are available in the [FlexVolume Driver GitHub repository](https://github.com/hpe-storage/flexvolume-driver) on how to deploy the integration either standalone or using Helm.
+
+In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using Helm. Helm is the recommended way to deploy both the FlexVolume and CSI driver for HPE Nimble storage products.
 
 Create a `values.yaml` file:
 
