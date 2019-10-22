@@ -28,7 +28,7 @@ where `command`, `TYPE`, `NAME`, and `flags` are:
 
 * `NAME`: Specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed, for example `kubectl get pods`.
 
-[Kubernetes Cheat Sheet](Kubernetes-Cheat-Sheet.pdf) - Courtesy of Linux Academy
+[Kubernetes Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 
 ## Getting to know your cluster:
