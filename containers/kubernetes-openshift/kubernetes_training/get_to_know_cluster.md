@@ -2,6 +2,8 @@
 
 All of this information is taken from the official documentation found on  [kubernetes.io/docs](https://kubernetes.io/docs/)
 
+![Hands On Lab Configuration](HoL_config.png)
+
 ## Overview of kubectl
 
 The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs. For a complete list of kubectl operations, see [Overview of kubectl](https://kubernetes.io/docs/reference/kubectl/overview/).
