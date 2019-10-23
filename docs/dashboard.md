@@ -84,7 +84,7 @@ kubectl -n kube-system describe secret admin-user-token-n7jx9
 
 Copy the token value:
 
-```
+```yaml
 Name:         admin-user-token-n7jx9
 Namespace:    kube-system
 Labels:       <none>

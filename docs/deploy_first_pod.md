@@ -10,7 +10,7 @@ Lets create a simple nginx webserver.
 ```
 
 Copy and paste the following
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -46,7 +46,7 @@ first-nginx-pod-5d77bbb868-k48zk   1/1     Running   0          6m39s
 ```
 
 We can inspect the pod further using the kubectl describe command:
-```
+```yaml
 # kubectl describe pod first-nginx-pod-5d77bbb868-k48zk
 Name:           first-nginx-pod-5d77bbb868-k48zk
 Namespace:      default

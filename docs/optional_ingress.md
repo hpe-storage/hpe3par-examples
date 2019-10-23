@@ -62,7 +62,7 @@ We will be deploying the Traefik Ingress Controllers as a DaemonSet which is goo
 
 Create `traefik-controller-ds.yml`:
 
-```
+```yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -140,7 +140,7 @@ We will use a previous example from our first Pod deployment:
 Create `first-nginx-pod.yml`
 
 Copy and paste the following
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -191,7 +191,7 @@ Finally lets create the Ingress Resource or rules that tie all of this together.
 Create `ingress-resource.yml`
 >You may need to modify the host to match your DNS
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -211,7 +211,7 @@ kubectl apply -f ingress-resource.yml
 ```
 
 Let's take a look to make sure the Ingress rules were created successfully
-```
+```yaml
 kubectl describe ing ingress-resource-nginx
 Name:             ingress-resource-nginx
 Namespace:        default
