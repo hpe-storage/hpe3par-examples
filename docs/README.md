@@ -14,4 +14,4 @@ The flow of the guide will be as follows:
 * [Exercise 6: Deploying Persistent Apps (Wordpress) with Helm](deploy_app_helm.md)
 
 #### Optional Exercise
-* [Optional: Setting up Ingress]
+* [Optional: Setting up Ingress](optional_ingress.md)
