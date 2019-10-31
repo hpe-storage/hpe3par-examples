@@ -1,4 +1,4 @@
-### Welcome to the Kubernetes training module
+# Welcome to the Kubernetes training module
 
 We will go over some basic concepts of Kubernetes before getting started with a simple demo.
 
