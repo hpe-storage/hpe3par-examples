@@ -44,12 +44,13 @@ kubectl config view
 Check that kubectl and the config file is properly configured by getting the cluster state:
 
 ```
-kubectl cluster-info
+  kubectl cluster-info
 ```
 If you see a URL response, kubectl is correctly configured to access your cluster.
 
+The output is similar to this:
 ```
-# kubectl cluster-info
+$ kubectl cluster-info
 Kubernetes master is running at https://10.90.200.11:6443
 coredns is running at https://10.90.200.11:6443/api/v1/namespaces/kube-system/services/coredns:dns/proxy
 kubernetes-dashboard is running at https://10.90.200.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy
@@ -59,11 +60,11 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 Now lets look at the nodes within our cluster.
 ```
-kubectl get nodes
+  kubectl get nodes
 ```
 You should see output similar to below. As you can see, each node has a role as master or worker node (\<none>).
 ```
-# kubectl get nodes
+$ kubectl get nodes
 NAME              STATUS   ROLES    AGE   VERSION
 kube-g1-master1   Ready    master   37d   v1.15.3
 kube-g1-master2   Ready    master   37d   v1.15.3
@@ -74,7 +75,7 @@ kube-g1-node2     Ready    <none>   37d   v1.15.3
 
 You can list any available pods.
 ```
-kubectl get pods
+  kubectl get pods
 ```
 
 

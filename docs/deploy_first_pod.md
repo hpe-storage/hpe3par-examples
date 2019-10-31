@@ -6,7 +6,7 @@ A pod is a collection of containers sharing a network and mount namespace and is
 Lets create a simple nginx webserver.
 
 ```
-# notepad first-nginx-pod.yml
+notepad first-nginx-pod.yml
 ```
 
 Copy and paste the following
@@ -35,19 +35,22 @@ Save and exit
 
 Create the pod, execute:
 ```
-# kubectl apply -f first-nginx-pod.yml
+kubectl apply -f first-nginx-pod.yml
 ```
 
 We can now see the pod running:
+
 ```
-# kubectl get pods
+$ kubectl get pods
+
 NAME                               READY   STATUS    RESTARTS   AGE
 first-nginx-pod-5d77bbb868-k48zk   1/1     Running   0          6m39s
 ```
 
-We can inspect the pod further using the kubectl describe command:
-```yaml
-# kubectl describe pod first-nginx-pod-5d77bbb868-k48zk
+We can inspect the pod further using the **kubectl describe** command:
+```
+$ kubectl describe pod first-nginx-pod-5d77bbb868-k48zk
+
 Name:           first-nginx-pod-5d77bbb868-k48zk
 Namespace:      default
 Priority:       0
@@ -101,7 +104,11 @@ Events:
 
 Lets find the IP address of the pod.
 ```
-# kubectl describe pod first-nginx-pod-5d77bbb868-k48zk | select-string -Pattern IP:
+kubectl describe pod <pod_name> | select-string -Pattern IP:
+```
+
+```
+$ kubectl describe pod first-nginx-pod-5d77bbb868-k48zk | select-string -Pattern IP:
 
 IP:             10.233.126.2
 
@@ -110,7 +117,8 @@ IP:             10.233.126.2
 This IP address is only accessible from within the cluster, so lets use `port-forward` to expose the port temporarily outside the cluster.
 
 ```
-# kubectl port-forward first-nginx-pod-5d77bbb868-k48zk 8081:80
+$ kubectl port-forward first-nginx-pod-5d77bbb868-k48zk 8081:80
+
 Forwarding from 127.0.0.1:8081 -> 80
 Forwarding from [::1]:8081 -> 80
 ```

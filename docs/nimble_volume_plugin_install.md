@@ -10,6 +10,11 @@ In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using H
 
 Create a `values.yaml` file:
 
+```
+notepad values.yaml
+```
+
+Copy and paste the following:
 ```yaml
 ---
 backend: "<nimble_IP>"
@@ -26,6 +31,11 @@ storageClass:
 Add Helm repo and deploy the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin:
 
 ```
+helm repo add hpe https://hpe-storage.github.io/co-deployments
+```
+
+The output is similar to this:
+```
 $ helm repo add hpe https://hpe-storage.github.io/co-deployments
 "hpe" has been added to your repositories
 $ helm install -f values.yaml --name hpe-flexvolume hpe/hpe-flexvolume-driver --namespace kube-system
@@ -35,8 +45,13 @@ NAMESPACE: kube-system
 STATUS: DEPLOYED
 ```
 
-The DaemonSet workload type automatically deploys one replica of the FlexVolume driver on each node of the cluster and ensures all the host packages are installed and necessary services are running prior to serving the cluster. We can see this by querying the DaemonSet.
+The `DaemonSet` workload type automatically deploys one replica of the FlexVolume driver on each node of the cluster and ensures all the host packages are installed and necessary services are running prior to serving the cluster. We can see this by querying the `DaemonSet`.
 
+```
+kubectl get ds/hpe-flexvolume-driver -n kube-system
+```
+
+The output is similar to this:
 ```
 $ kubectl get ds/hpe-flexvolume-driver -n kube-system
 NAME                    DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE  AGE
@@ -47,6 +62,11 @@ Now let's test the deployment by creating a PVC.
 
 Create a `pvc.yaml` file:
 
+```
+notepad pvc.yaml
+```
+
+Copy and paste the following:
 ```yaml
 ---
 apiVersion: v1
@@ -63,6 +83,11 @@ spec:
 
 Create the PVC:
 
+```
+kubectl create -f pvc.yaml
+```
+
+The output is similar to this:
 ```
 $ kubectl create -f pvc.yaml
 persistentvolumeclaim/my-pvc created

@@ -33,7 +33,7 @@ metadata:
 Run `kubectl apply`:
 
 ```
-# kubectl apply -f dashboard-adminuser.yml
+kubectl apply -f dashboard-adminuser.yml
 ```
 
 ### Create ClusterRoleBinding
@@ -59,7 +59,7 @@ subjects:
 Run `kubectl apply`:
 
 ```
-# kubectl apply -f dashboard-adminuser.yml
+kubectl apply -f dashboard-adminuser.yml
 ```
 
 ## Get Token
@@ -101,6 +101,8 @@ ca.crt:     1025 bytes
 ```
 
 Paste it into the dashboard form then Click - Sign In.
+
+
 
 Courtesy: [https://medium.com/@kanrangsan/creating-admin-user-to-access-kubernetes-dashboard-723d6c9764e4](https://medium.com/@kanrangsan/creating-admin-user-to-access-kubernetes-dashboard-723d6c9764e4)
 

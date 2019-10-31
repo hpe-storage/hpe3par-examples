@@ -26,6 +26,7 @@ We won't go in depth on this since there are many ways to setup a load balancer 
 
 Here is a sample `http` load balancer config `/etc/haproxy/haproxy.cfg`:
 
+The output is similar to this:
 ```
 frontend http_front
   bind *:80
@@ -38,7 +39,7 @@ backend http_back
   server kube1 192.168.1.176:80
   server kube2 192.168.1.177:80
 ```
-Enable and start the haproxy service.  
+Enable and start the `haproxy` service.  
 
 ### Setup Ingress Controllers
 
@@ -50,17 +51,21 @@ We will be using Traefik to handle this. Please check out this page for more inf
 
 Create the Traefik Service Account and RBAC rules:
 ```
-# kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
+  kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
 ```
 
 Inspect the clusterrole binding
 ```
-# kubectl describe clusterrole traefik-ingress-controller -n kube-system
+  kubectl describe clusterrole traefik-ingress-controller -n kube-system
 ```
 
 We will be deploying the Traefik Ingress Controllers as a DaemonSet which is good for a small number of worker nodes. If you are deploying to larger clusters, you may want to use a deployment to reduce the number of controllers deployed.
 
 Create `traefik-controller-ds.yml`:
+
+```
+  notepad traefik-controller-ds.yml
+```
 
 ```yaml
 ---
@@ -125,12 +130,12 @@ spec:
 
 #### Deploy the Traefik controllers:
 ```
-# kubectl apply -f traefik-controller-ds.yml
+  kubectl apply -f traefik-controller-ds.yml
 ```
 
 Inspect the controllers
 ```
-# kubectl get all -n kube-system | grep traefik
+  kubectl get all -n kube-system | grep traefik
 ```
 
 Now we are ready to create Services and Ingress Resources.
@@ -164,7 +169,7 @@ spec:
 
 Save and Exit
 ```
-kubectl create -f first-nginx-pod.yaml
+  kubectl create -f first-nginx-pod.yaml
 ```
 
 #### Create the Service
@@ -173,11 +178,16 @@ kubectl create -f first-nginx-pod.yaml
 `NodePort` assigns the pod to a fixed port on the node.  You’ll be able to contact the `NodePort` service, from outside the cluster, by requesting `<NodeIP>:<NodePort>`.
 
 ```
-kubectl expose deploy first-nginx-pod --port 80
+  kubectl expose deploy first-nginx-pod --port 80
 ```
 
 Check the created Service
 
+```
+  kubectl get service
+```
+
+The output is similar to this:
 ```
 # kubectl get service
 NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
@@ -207,7 +217,7 @@ spec:
 ```
 
 ```
-kubectl apply -f ingress-resource.yml
+  kubectl apply -f ingress-resource.yml
 ```
 
 Let's take a look to make sure the Ingress rules were created successfully
@@ -234,7 +244,7 @@ Now if everything is working correctly. Open your browser and you should see:
 Now for a final check, delete the `ingress-resource-nginx`.
 
 ```
-kubectl delete ing ingress-resource-nginx
+  kubectl delete ing ingress-resource-nginx
 ```
 
 Refresh the webpage, it should stop working.
@@ -242,5 +252,5 @@ Refresh the webpage, it should stop working.
 Recreate the rule again, and it should start routing traffic again.
 
 ```
-kubectl apply -f ingress-resource.yml
+  kubectl apply -f ingress-resource.yml
 ```

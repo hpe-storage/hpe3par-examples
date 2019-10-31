@@ -15,3 +15,4 @@ The flow of the guide will be as follows:
 
 #### Optional Exercise
 * [Optional: Setting up Ingress](optional_ingress.md)
+* [Optional: Changing the default StorageClass](default_storageclass.md)

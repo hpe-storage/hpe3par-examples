@@ -24,7 +24,13 @@ choco install kubernetes-helm
 ## INSTALLING TILLER
 Tiller, the server portion of Helm, typically runs inside of your Kubernetes cluster.
 
-Create Service Account and RBAC for Tiller
+Create Service Account and RBAC for Tiller.
+
+```
+notepad rbac_tiller.yaml
+```
+
+Copy the following:
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -46,7 +52,8 @@ subjects:
     namespace: kube-system
 ```    
 
-###Easy In-Cluster Installation
+### Easy In-Cluster Installation
+
 The easiest way to install `tiller` into the cluster and use the Service Account is simply to run:
 ```
 helm init --service-account tiller --history-max 200
@@ -54,7 +61,7 @@ helm init --service-account tiller --history-max 200
 
 This will validate that helm’s local environment is set up correctly (and set it up if necessary). Then it will connect to whatever cluster `kubectl` connects to by default (`kubectl config view`). Once it connects, it will install tiller into the kube-system namespace.
 
-After helm init, you should be able to run `kubectl get pods --namespace kube-system` and see Tiller running.
+After **helm init**, you should be able to run `kubectl get pods --namespace kube-system` and see Tiller running.
 
 
 **PREVIOUS:** [Exercise 3: Deploy your first pod](deploy_first_pod.md)

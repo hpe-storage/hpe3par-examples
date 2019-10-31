@@ -1,6 +1,6 @@
 # Exercise 5: Install the HPE 3PAR Volume Driver for Docker version 3.3
 
->Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and HPE Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin)
+>Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin)
 
 ## Automated Installer for 3PAR Docker Volume plugin (Ansible)
 These are Ansible playbooks to automate the install of the HPE 3PAR Volume Plug-in for Docker for use within Kubernetes/OpenShift environments.
@@ -8,8 +8,8 @@ These are Ansible playbooks to automate the install of the HPE 3PAR Volume Plug-
 ### Getting Started
 These playbooks perform the following tasks on the Master/Worker nodes as defined in the Ansible hosts file.
 
-* Configure the Docker Services for the HPE 3PAR Docker Volume Plug-in
-* Deploys the config files (iSCSI or FC) to support your environment
+* Configures the Docker Services for the HPE 3PAR Docker Volume Plug-in
+* Configures iSCSI/FC/File
 * Installs the HPE 3PAR Docker Volume Plug-in (Containerized version)
 * For Kubernetes/OpenShift,
   * Deploys a Highly Available HPE etcd cluster used by the HPE 3PAR Volume Plug-in for Docker
@@ -24,16 +24,16 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
 
   - Clone the python-hpedockerplugin repository
     ```
-    $ cd ~
-    $ git clone https://github.com/hpe-storage/python-hpedockerplugin
-    $ cd python-hpedockerplugin/ansible_3par_docker_plugin
+    cd ~
+    git clone https://github.com/hpe-storage/python-hpedockerplugin
+    cd python-hpedockerplugin/ansible_3par_docker_plugin
     ```
 
 
   - Copy [plugin configuration properties - sample](/ansible_3par_docker_plugin/properties/plugin_configuration_properties_sample.yml) at `properties/plugin_configuration_properties.yml` based on your HPE 3PAR Storage array configuration. Some of the properties are mandatory and must be specified in the properties file while others are optional.
       ```
-      $ cd python-hpedockerplugin/ansible_3par_docker_plugin/properties
-      $ vi plugin_configuration_properties.yml
+      cd python-hpedockerplugin/ansible_3par_docker_plugin/properties
+      vi plugin_configuration_properties.yml
       ```
 For more information on supported parameters:
 https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin
@@ -72,7 +72,9 @@ Modify the Ansible hosts file to define your Master/Worker nodes as well as wher
 
 >Note: We will be using the Ansible hosts file found in the ansible_3par_docker_plugin folder.
 
+```
 $ vi ~/python-hpedockerplugin/ansible_3par_docker_plugin/hosts
+```
 
 ```yaml
 #Enable and populate the proxies here
@@ -100,7 +102,7 @@ Save and exit
 Make sure you are in the `python-hpedockerplugin/ansible_3par_docker_plugin` directory.
 
 ```
-$ ansible-playbook -i hosts install_hpe_3par_volume_driver.yml
+ansible-playbook -i hosts install_hpe_3par_volume_driver.yml
 ```
 
 Once complete you will be ready to start using the HPE 3PAR Volume Plug-in for Docker.
@@ -110,7 +112,7 @@ Once complete you will be ready to start using the HPE 3PAR Volume Plug-in for D
 Creating a default StorageClass
 
 ```yaml
-$ kubectl create -f - << EOF
+kubectl create -f - << EOF
 ---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -146,6 +148,7 @@ spec:
 
 Use the kubectl get pvc command to view the PVC
 
+The output is similar to this:
 ```
 $ kubectl get pvc
 NAME      STATUS  VOLUME                                         CAPACITY  ACCESS MODES  STORAGECLASS   AGE
