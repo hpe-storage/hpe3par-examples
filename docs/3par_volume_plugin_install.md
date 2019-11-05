@@ -159,7 +159,8 @@ spec:
     requests:
       storage: 250Gi
   storageClassName: sc-basic
-EOF  
+EOF
+
 ```
 
 Use the kubectl get pvc command to view the PVC
