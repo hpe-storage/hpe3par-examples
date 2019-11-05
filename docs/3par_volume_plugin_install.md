@@ -40,29 +40,42 @@ https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_d
 
 Copy this sample configuration
 ```yaml
+
 INVENTORY:
-DEFAULT:
+  DEFAULT:
 #Mandatory Parameters-----------------------------------------------------------------------------------
 
-  # Specify the port to be used by HPE 3PAR plugin etcd cluster - default 23790
-  host_etcd_port_number: 23790
-  # Plugin Driver - iSCSI or FC
-  hpedockerplugin_driver: hpedockerplugin.hpe.hpe_3par_iscsi.HPE3PARISCSIDriver
-  hpe3par_ip: 10.90.200.117
-  hpe3par_username: 3paradm
-  hpe3par_password: 3pardata
-  hpe3par_port: 8080
-  hpe3par_cpg: SSD_r6
+    # Specify the port to be used by HPE 3PAR plugin etcd cluster
+    host_etcd_port_number: 23790
+    # Plugin Driver - iSCSI
+    hpedockerplugin_driver: hpedockerplugin.hpe.hpe_3par_iscsi.HPE3PARISCSIDriver
+    hpe3par_ip: 10.90.97.1
+    hpe3par_username: 3paradm
+    hpe3par_password: 3pardata
+    hpe3par_port: 8080
+    hpe3par_cpg: NL_r6
 
-  # Plugin version
-  volume_plugin: hpestorage/legacyvolumeplugin:3.3
-  # Dory installer version - Required for Openshift/Kubernetes setup
-  # Supported versions are dory_installer_v31, dory_installer_v32
-  dory_installer_version: dory_installer_v32
+    # Plugin version - Required only in DEFAULT backend
+    volume_plugin: hpestorage/legacyvolumeplugin:3.3
+    # Dory installer version - Required for Openshift/Kubernetes setup
+    # Supported versions are dory_installer_v31, dory_installer_v32
+    dory_installer_version: dory_installer_v32
 
 #Optional Parameters------------------------------------------------------------------------------------
-  logging: DEBUG
-  hpe3par_snapcpg: SSD_r6
+
+    logging: DEBUG
+    hpe3par_snapcpg: NL_r6    
+
+    # Uncomment to encrypt passwords in hpe.conf using defined passphrase
+    #encryptor_key: < encrypt_key1 >
+
+    #ssh_hosts_key_file: '/root/.ssh/known_hosts'
+    #hpe3par_debug: True
+    #suppress_requests_ssl_warning: True
+    #hpe3par_iscsi_chap_enabled: True
+    #use_multipath: False
+    #enforce_multipath: False
+    #vlan_tag: True
 ```
 
 Save and exit
@@ -75,6 +88,8 @@ Modify the Ansible hosts file to define your Master/Worker nodes as well as wher
 ```
 $ vi ~/python-hpedockerplugin/ansible_3par_docker_plugin/hosts
 ```
+
+Change this to match your group.
 
 ```yaml
 #Enable and populate the proxies here
@@ -144,6 +159,7 @@ spec:
     requests:
       storage: 250Gi
   storageClassName: sc-basic
+EOF  
 ```
 
 Use the kubectl get pvc command to view the PVC
