@@ -146,7 +146,7 @@ A `PersistentVolumeClaim` (PVC) is a request for storage by a user. It is based 
 For example, we will be requesting a 250 GB volume based on the StorageClass `sc-basic`. Also because we are requesting block storage, we will need to need to specify ReadWriteOnce for the AccessModes.
 
 ```yaml
-$ kubectl create -f - << EOF
+kubectl create -f - << EOF
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
