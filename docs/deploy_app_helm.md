@@ -126,7 +126,7 @@ Remember to get your username/password. ```deployment_name``` can be found by ru
   echo Password: $(kubectl get secret --namespace default <deployment_name> -o jsonpath="{.data.wordpress-password}" | base64 --decode)
 ```
 
-You can log into the site:
+You can log into the site and blog away!
 ```
 http://wp.dev.g<group_number>.example.com/admin
 ```
