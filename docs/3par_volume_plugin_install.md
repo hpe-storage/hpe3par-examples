@@ -24,7 +24,7 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
 
   - Clone the python-hpedockerplugin repository
     ```
-    cd ~
+    cd ~/workspace
     git clone https://github.com/hpe-storage/python-hpedockerplugin
     cd python-hpedockerplugin/ansible_3par_docker_plugin
     ```
@@ -32,7 +32,7 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
 
   - Create the HPE 3PAR properties file `properties/plugin_configuration_properties.yml` based on your HPE 3PAR Storage array configuration. Some of the properties are mandatory and must be specified in the properties file while others are optional. You can see a sample properties file in the folder `properties/plugin_configuration_properties_sample.yml`
       ```
-      vi /properties/plugin_configuration_properties.yml
+      vi properties/plugin_configuration_properties.yml
       ```
 For more information on supported parameters:
 https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin
@@ -83,8 +83,9 @@ Save and exit
 Modify the Ansible hosts file to define your Master/Worker nodes as well as where you want to deploy your etcd cluster.
 >Note: We will be using the Ansible hosts file found in the ansible_3par_docker_plugin folder.
 
+Make sure you are in the `python-hpedockerplugin/ansible_3par_docker_plugin` directory.
 ```
-$ vi ~/python-hpedockerplugin/ansible_3par_docker_plugin/hosts
+$ vi hosts
 ```
 
 Change this to match your group.
@@ -139,6 +140,9 @@ parameters:
 EOF
 ```
 
+Available Storage Class options:
+[StorageClass Options](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/How-to-Persistent-Volumes-with-the-HPE-3PAR-Volume-Plug-in-for/ba-p/7060077#.XcNQd-hKguU)
+
 A `PersistentVolumeClaim` (PVC) is a request for storage by a user. It is based off of a StorageClass.
 
 For example, we will be requesting a 250 GB volume based on the StorageClass `sc-basic`. Also because we are requesting block storage, we will need to need to specify ReadWriteOnce for the AccessModes.
@@ -155,7 +159,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 250Gi
+      storage: 32Gi
   storageClassName: sc-basic
 EOF
 ```
@@ -166,7 +170,7 @@ The output is similar to this:
 ```
 $ kubectl get pvc
 NAME      STATUS  VOLUME                                         CAPACITY  ACCESS MODES  STORAGECLASS   AGE
-pvc-basic Bound   sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0  250Gi     RWO           sc-basic       19d
+pvc-basic Bound   sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0  32Gi     RWO           sc-basic       19d
 ```
 
 

@@ -212,7 +212,7 @@ metadata:
   name: ingress-resource-nginx
 spec:
   rules:
-  - host: nginx.dev.g1.kubehol.net
+  - host: nginx.dev.example.com
     http:
       paths:
       - backend:
@@ -234,7 +234,7 @@ Default backend:  default-http-backend:80 (<none>)
 Rules:
   Host                                 Path  Backends
   ----                                 ----  --------
-  nginx.dev.g1.kubehol.net        nginx-deploy-main:80 (10.233.127.16:80)
+  nginx.dev.example.com           nginx-deploy-main:80 (10.233.127.16:80)
 Annotations:
 Events:  <none>
 ```

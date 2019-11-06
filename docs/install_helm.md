@@ -27,7 +27,7 @@ Tiller, the server portion of Helm, typically runs inside of your Kubernetes clu
 Create Service Account and RBAC for Tiller.
 
 ```
-notepad rbac_tiller.yaml
+notepad rbac_tiller.yml
 ```
 
 Copy the following:
@@ -51,6 +51,11 @@ subjects:
     name: tiller
     namespace: kube-system
 ```    
+
+```
+kubectl apply -f rbac_tiller.yml
+```
+
 
 ### Easy In-Cluster Installation
 

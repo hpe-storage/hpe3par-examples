@@ -9,10 +9,10 @@ Detailed instructions are available in the [FlexVolume Driver GitHub repository]
 
 In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using Helm. Helm is the recommended way to deploy both the FlexVolume and CSI driver for HPE Nimble storage products.
 
-Create a `values.yaml` file:
+Create a `values.yml` file:
 
 ```
-notepad values.yaml
+notepad values.yml
 ```
 
 Copy and paste the following:
@@ -39,7 +39,7 @@ The output is similar to this:
 ```
 $ helm repo add hpe https://hpe-storage.github.io/co-deployments
 "hpe" has been added to your repositories
-$ helm install -f values.yaml --name hpe-flexvolume hpe/hpe-flexvolume-driver --namespace kube-system
+$ helm install -f values.yml --name hpe-flexvolume hpe/hpe-flexvolume-driver --namespace kube-system
 NAME: hpe-flexvolume
 LAST DEPLOYED: Mon Sep 23 11:00:28 2019
 NAMESPACE: kube-system
@@ -61,10 +61,10 @@ hpe-flexvolume-driver   3         3         3       3            3          11m
 
 Now let's test the deployment by creating a PVC.
 
-Create a `pvc.yaml` file:
+Create a `pvc.yml` file:
 
 ```
-notepad pvc.yaml
+notepad pvc.yml
 ```
 
 Copy and paste the following:
@@ -85,12 +85,12 @@ spec:
 Create the PVC:
 
 ```
-kubectl create -f pvc.yaml
+kubectl create -f pvc.yml
 ```
 
 The output is similar to this:
 ```
-$ kubectl create -f pvc.yaml
+$ kubectl create -f pvc.yml
 persistentvolumeclaim/my-pvc created
 $ kubectl get pvc/my-pvc
 NAME   STATUS VOLUME                 CAPACITY ACCESS MODES STORAGECLASS AGE

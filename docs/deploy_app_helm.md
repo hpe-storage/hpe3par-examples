@@ -146,4 +146,4 @@ http://wp.dev.g<group_number>.example.com/admin
 
 
 
-**PREVIOUS:** [Deploying app with Helm](deploy_app_helm.sh)
+**HOME:** [Kubernetes Training Hands on Lab](https://hpe-storage.github.io/hpe3par-examples/)
