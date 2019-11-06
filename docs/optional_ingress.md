@@ -47,7 +47,7 @@ In order to route traffic internally within the Kubernetes clusters, we will nee
 We will be using Traefik to handle this. Please check out this page for more information: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 
 #### Deploy Traefik 1.7:
->If you run into any issues when following these steps, double check the latest version of Traefik. You may need to update the command accordingly but as of this writing, the latest is 1.7.
+>If you run into any issues when following these steps, double check the latest version of Traefik. You may need to update the command accordingly but as of this writing, we are using 1.7.
 
 
 Create the Traefik Service Account and RBAC rules:
