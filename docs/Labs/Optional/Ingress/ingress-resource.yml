@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resource-nginx
+spec:
+  rules:
+  - host: nginx.dev.g1.kubehol.net
+    http:
+      paths:
+      - backend:
+          serviceName: first-nginx-pod
+          servicePort: 80

@@ -1,0 +1,18 @@
+#Enable and populate the proxies here
+#[all:vars]
+#http_proxy=http://x.x.x.x:port_number
+#https_proxy=https://x.x.x.x:port_number
+
+[masters]
+kube-<group_number>-master1
+kube-<group_number>-master2
+kube-<group_number>-master3
+
+[workers]
+kube-<group_number>-node1
+kube-<group_number>-node2
+
+[etcd]
+kube-<group_number>-master1
+kube-<group_number>-master2
+kube-<group_number>-master3

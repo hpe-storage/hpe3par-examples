@@ -1,0 +1,10 @@
+---
+backend: "Nimble_array_IP"
+username: "admin"
+password: "admin"
+pluginType: "nimble"
+protocol: "iscsi"
+fsType: "ext4"
+storageClass:
+  create: true
+  defaultClass: true
