@@ -12,13 +12,14 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
 
 * Default StorageClass - make sure you have a default StorageClass for use by the helm deployment
 <br/>
+
   * look for the default flag
   ```
   kubectl get sc
   ```
 
   * refer to [Setting default StorageClass](default_storageclass.md)
-<br/> 
+<br/>
 * Ingress controllers deployed for external access to your Kubernetes cluster **(pre-configured in HoL)**
 
   ```
