@@ -43,20 +43,80 @@ helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true,i
 
 It should look similar to this:
 ```
-helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g10.example.com
-```
+PS C:\Users\Administrator> helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g10.example.com
+NAME:   snug-turtle
+LAST DEPLOYED: Mon Nov  4 20:20:43 2019
+NAMESPACE: default
+STATUS: DEPLOYED
 
-This will take a few minutes to complete.
+RESOURCES:
+==> v1/ConfigMap
+NAME                       DATA  AGE
+snug-turtle-mariadb        1     0s
+snug-turtle-mariadb-tests  1     0s
+
+==> v1/Deployment
+NAME                   READY  UP-TO-DATE  AVAILABLE  AGE
+snug-turtle-wordpress  0/1    1           0          0s
+
+==> v1/PersistentVolumeClaim
+NAME                   STATUS   VOLUME        CAPACITY  ACCESS MODES  STORAGECLASS  AGE
+snug-turtle-wordpress  Pending  hpe-standard  0s
+
+==> v1/Pod(related)
+NAME                                   READY  STATUS   RESTARTS  AGE
+snug-turtle-mariadb-0                  0/1    Pending  0         0s
+snug-turtle-wordpress-57885c775-ds97z  0/1    Pending  0         0s
+
+==> v1/Secret
+NAME                   TYPE    DATA  AGE
+snug-turtle-mariadb    Opaque  2     0s
+snug-turtle-wordpress  Opaque  1     0s
+
+==> v1/Service
+NAME                   TYPE          CLUSTER-IP     EXTERNAL-IP  PORT(S)                     AGE
+snug-turtle-mariadb    ClusterIP     10.233.57.67   <none>       3306/TCP                    0s
+snug-turtle-wordpress  LoadBalancer  10.233.62.107  <pending>    80:30767/TCP,443:30869/TCP  0s
+
+==> v1/StatefulSet
+NAME                 READY  AGE
+snug-turtle-mariadb  0/1    0s
+
+==> v1beta1/Ingress
+NAME                   AGE
+snug-turtle-wordpress  0s
+
+
+NOTES:
+1. Get the WordPress URL:
+
+  You should be able to access your new WordPress installation through
+
+2. Login with the following credentials to see your blog
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default snug-turtle-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+```  
+
+This will take a few minutes for everything to deploy. You can check the status with:
+```
+$ kubectl get pods
+NAME                                    READY   STATUS              RESTARTS   AGE
+snug-turtle-mariadb-0                   1/1     Running             0          2m37s
+snug-turtle-wordpress-57885c775-ds97z   1/1     Running             0          2m37s
+```
 
 Once complete, open a browser and go to:
 ```
-http://wp.dev.g<group_number>.example.com
+http\://wp.dev.g<group_number>.example.com
 ```
 
 It should look like the following:
 ```
 http://wp.dev.g10.example.com
 ```
+
+
 
 If everything was successful you will see your new WordPress site.
 
