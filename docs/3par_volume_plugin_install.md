@@ -30,10 +30,9 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
     ```
 
 
-  - Copy [plugin configuration properties - sample](/ansible_3par_docker_plugin/properties/plugin_configuration_properties_sample.yml) at `properties/plugin_configuration_properties.yml` based on your HPE 3PAR Storage array configuration. Some of the properties are mandatory and must be specified in the properties file while others are optional.
+  - Create the HPE 3PAR properties file `properties/plugin_configuration_properties.yml` based on your HPE 3PAR Storage array configuration. Some of the properties are mandatory and must be specified in the properties file while others are optional. You can see a sample properties file in the folder `properties/plugin_configuration_properties_sample.yml`
       ```
-      cd python-hpedockerplugin/ansible_3par_docker_plugin/properties
-      vi plugin_configuration_properties.yml
+      vi /properties/plugin_configuration_properties.yml
       ```
 For more information on supported parameters:
 https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin
