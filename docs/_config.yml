@@ -1,1 +1,6 @@
 theme: jekyll-theme-minimal
+title: Kubernetes Training Hands on Lab
+description: This is a free learning resource from HPE which walks you through various exercises to get you familiar with Kubernetes and provisioning Persistent storage using Nimble or 3PAR Storage systems.
+show_downloads: false
+logo: https://hpe-storage.github.io/hpe3par-examples/assets/hpe-dev-logo-mark-anim.svg
+google_analytics: UA-151662750-1
