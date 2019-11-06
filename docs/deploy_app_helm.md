@@ -11,19 +11,21 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
 * Helm & Tiller configured - Helm is used to automate the deployment of WordPress chart
 
 * Default StorageClass - make sure you have a default StorageClass for use by the helm deployment
+<br/>
   * look for the default flag
   ```
   kubectl get sc
   ```
 
   * refer to [Setting default StorageClass](default_storageclass.md)
-
+<br/> 
 * Ingress controllers deployed for external access to your Kubernetes cluster **(pre-configured in HoL)**
+
   ```
   kubectl get ds -n kube-system | grep traefik
   ```
   * refer to [Configuring Ingress](optional_ingress.md)
-<br/> 
+<br/>
 * Load Balancer configured and DNS to application **(pre-configured in HoL)**
   * refer to [Configuring Ingress](optional_ingress.md) for a simple **haproxy** example
 
