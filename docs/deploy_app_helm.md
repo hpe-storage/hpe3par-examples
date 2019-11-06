@@ -108,7 +108,7 @@ snug-turtle-wordpress-57885c775-ds97z   1/1     Running             0          2
 
 Once complete, open a browser and go to:
 ```
-http\://wp.dev.g<group_number>.example.com
+http://wp.dev.g<group_number>.example.com
 ```
 
 It should look like the following:
