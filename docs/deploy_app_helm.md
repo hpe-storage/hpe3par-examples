@@ -118,7 +118,9 @@ http://wp.dev.g10.example.com
 
 If everything was successful you will see your new WordPress site.
 
-Remember to get your username/password. ```deployment_name``` can be found by running ```helm list```.
+To get your username/password.
+```deployment_name``` can be found by running ```helm list```.
+
 ```
   Login with the following credentials to see your blog
 

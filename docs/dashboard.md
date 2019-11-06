@@ -17,8 +17,9 @@ To protect your cluster data, Dashboard deploys with a minimal RBAC configuratio
 Open a second terminal, if you don't have one open already.
 
 ## Create the Admin Service Account
-
->Warning: The admin user created in the tutorial will have administrative privileges and is for educational purposes only.
+<blockquote>
+<p>Warning: The admin user created in the tutorial will have administrative privileges and is for educational purposes only.</p>
+</blockquote>
 
 Copy the code below into `dashboard-adminuser.yml` file
 

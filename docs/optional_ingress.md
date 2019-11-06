@@ -47,7 +47,9 @@ In order to route traffic internally within the Kubernetes clusters, we will nee
 We will be using Traefik to handle this. Please check out this page for more information: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 
 #### Deploy Traefik 1.7:
->If you run into any issues when following these steps, double check the latest version of Traefik. You may need to update the command accordingly but as of this writing, the latest is 1.7.
+<blockquote>
+<p>If you run into any issues when following these steps, double check the latest version of Traefik. You may need to update the command accordingly but as of this writing, the latest is 1.7.</p>
+</blockquote>
 
 Create the Traefik Service Account and RBAC rules:
 ```
@@ -173,9 +175,12 @@ Save and Exit
 ```
 
 #### Create the Service
->**ClusterIP vs NodePort:**
->`ClusterIP` assigns each deployment/pod an internal cluster IP only routable within the cluster. This allows multiple services (http, databases, etc.) to use the same Port regardless of the worker node the pods are running on. Choosing `ClusterIP` makes the service only reachable from within the cluster. This is the default ServiceType.
-`NodePort` assigns the pod to a fixed port on the node.  You’ll be able to contact the `NodePort` service, from outside the cluster, by requesting `<NodeIP>:<NodePort>`.
+<blockquote>
+<p>**ClusterIP vs NodePort:**</p>
+
+<p>`ClusterIP` assigns each deployment/pod an internal cluster IP only routable within the cluster. This allows multiple services (http, databases, etc.) to use the same Port regardless of the worker node the pods are running on. Choosing `ClusterIP` makes the service only reachable from within the cluster. This is the default ServiceType.</p>
+<p>`NodePort` assigns the pod to a fixed port on the node.  You’ll be able to contact the `NodePort` service, from outside the cluster, by requesting `<NodeIP>:<NodePort>`.</p>
+</blockquote>
 
 ```
   kubectl expose deploy first-nginx-pod --port 80
@@ -199,7 +204,9 @@ first-nginx-pod      ClusterIP   10.233.39.195   <none>        80/TCP    48m
 Finally lets create the Ingress Resource or rules that tie all of this together. Now that we have a load balancer routing traffic, ingress controllers to help route traffic to the pods on each worker node, and services in place to expose the application port, lets create the rules that tell the ingress controllers where to forward the traffic requests from the load balancer and map it to the appropriate Service so it reaches the applications.
 
 Create `ingress-resource.yml`
->You may need to modify the host to match your DNS
+<blockquote>
+<p>You may need to modify the host to match your DNS</p>
+</blockquote>
 
 ```yaml
 apiVersion: extensions/v1beta1

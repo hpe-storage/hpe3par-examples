@@ -1,6 +1,6 @@
 # Exercise 5: Install the HPE 3PAR Volume Driver for Docker version 3.3
 
->Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin)
+Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin)
 
 ## Automated Installer for 3PAR Docker Volume plugin (Ansible)
 These are Ansible playbooks to automate the install of the HPE 3PAR Volume Plug-in for Docker for use within Kubernetes/OpenShift environments.
@@ -20,7 +20,9 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
   - Install Ansible 2.5 or above as per [Installation Guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
   - Login to 3PAR via SSH to create entry in /\<user>\/.ssh/known_hosts file
-  > **Note:** Entries for the Master and Worker nodes should already exist within the /\<user>\/.ssh/known_hosts file from the OpenShift installation. If not, you will need to log into each of the Master and Worker nodes as well to prevent connection errors from Ansible.
+  <blockquote>
+  <p> **Note:** Entries for the Master and Worker nodes should already exist within the /\<user>\/.ssh/known_hosts file from the OpenShift installation. If not, you will need to log into each of the Master and Worker nodes as well to prevent connection errors from Ansible.</p>
+  </blockquote>
 
   - Clone the python-hpedockerplugin repository
     ```
@@ -82,8 +84,9 @@ Save and exit
 
 ### Ansible hosts file
 Modify the Ansible hosts file to define your Master/Worker nodes as well as where you want to deploy your etcd cluster.
-
->Note: We will be using the Ansible hosts file found in the ansible_3par_docker_plugin folder.
+<blockquote>
+<p>Note: We will be using the Ansible hosts file found in the ansible_3par_docker_plugin folder.</p>
+</blockquote>
 
 ```
 $ vi ~/python-hpedockerplugin/ansible_3par_docker_plugin/hosts

@@ -122,7 +122,9 @@ $ kubectl port-forward first-nginx-pod-5d77bbb868-k48zk 8081:80
 Forwarding from 127.0.0.1:8081 -> 80
 Forwarding from [::1]:8081 -> 80
 ```
->Note: port-forward is meant for temporarily exposing an application outside of a Kubernetes cluster. For a more permanent solution, look into Ingress.
+<blockquote>
+<p>Note: port-forward is meant for temporarily exposing an application outside of a Kubernetes cluster. For a more permanent solution, look into Ingress.</p>
+</blockquote>
 
 Finally, we can open a browser and go to:
 ```
