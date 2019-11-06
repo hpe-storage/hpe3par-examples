@@ -13,7 +13,7 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
 
   * ```kubectl get sc ``` look for the default flag
   * refer to [Setting default StorageClass](default_storageclass.md)
-  
+
 * Ingress controllers deployed for external access to your Kubernetes cluster **(pre-configured in HoL)**
   * ```kubectl get ds -n kube-system | grep traefik```
   * refer to [Configuring Ingress](optional_ingress.md)
@@ -21,24 +21,20 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
   * refer to [Configuring Ingress](optional_ingress.md) for a simple **haproxy** example
 
 
- ## Add Repo
-
- We will be using the WordPress chart from the bitnami repo. The following command allows you to download and install all the charts from this repository, both the bitnami and the upstreamed ones.
- ```
- $ helm repo add bitnami https://charts.bitnami.com
- ```
-
-Once we have added the repo, we can search it for available charts.
+## Install WordPress using Helm
+We will be using the stable/WordPress chart from the upstream repo. We can search the repo for available charts.
 ```
 $ helm search wordpress
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION
+stable/wordpress        7.6.0           5.2.4           Web publishing platform for building blogs and websites.
 ```
 
-Now we can install WordPress. The base command to install is:
+Now we can install WordPress using the defaults but that isn't what we want.
 ```
 $ helm install stable/wordpress
 ```
 
-but we want to customize it to our environment. We will specify the service type and configure the ingress rules.
+We will  customize it to our environment. We will specify the service and configure the ingress rules to point to our DNS name for the site.
 ```
 helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g<group_number>.example.com
 ```
@@ -121,6 +117,14 @@ http://wp.dev.g10.example.com
 
 
 If everything was successful you will see your new WordPress site.
+
+Remember to get your username/password. ```deployment_name``` can be found by running ```helm list```.
+```
+  Login with the following credentials to see your blog
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default <deployment_name> -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+```
 
 You can log into the site:
 ```
