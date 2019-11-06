@@ -20,9 +20,7 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
   - Install Ansible 2.5 or above as per [Installation Guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
   - Login to 3PAR via SSH to create entry in /\<user>\/.ssh/known_hosts file
-  <blockquote>
-  <p> **Note:** Entries for the Master and Worker nodes should already exist within the /\<user>\/.ssh/known_hosts file from the OpenShift installation. If not, you will need to log into each of the Master and Worker nodes as well to prevent connection errors from Ansible.</p>
-  </blockquote>
+  > **Note:** Entries for the Master and Worker nodes should already exist within the /\<user>\/.ssh/known_hosts file from the OpenShift installation. If not, you will need to log into each of the Master and Worker nodes as well to prevent connection errors from Ansible.
 
   - Clone the python-hpedockerplugin repository
     ```
@@ -84,9 +82,7 @@ Save and exit
 
 ### Ansible hosts file
 Modify the Ansible hosts file to define your Master/Worker nodes as well as where you want to deploy your etcd cluster.
-<blockquote>
-<p>Note: We will be using the Ansible hosts file found in the ansible_3par_docker_plugin folder.</p>
-</blockquote>
+>Note: We will be using the Ansible hosts file found in the ansible_3par_docker_plugin folder.
 
 ```
 $ vi ~/python-hpedockerplugin/ansible_3par_docker_plugin/hosts
