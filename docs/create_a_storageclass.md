@@ -46,5 +46,5 @@ Doing a simple `kubectl get sc` will enumerate the storage classes and show whic
 ## Learn more
 Storage Classes on [kubernetes.io](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
-**PREVIOUS:** [README.md](README.md)
-**NEXT:** [Exercise 2: Create a PVC](create_a_pvc.md)
+* **PREVIOUS:** [README.md](README.md)
+* **NEXT:** [Exercise 2: Create a PVC](create_a_pvc.md)

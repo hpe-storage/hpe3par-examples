@@ -36,5 +36,5 @@ It's possible to create a clone using the `cloneOf` and `importVolAsClone` param
 ## Learn more
 Using overrides in the Nimble [docs](https://github.com/hpe-storage/flexvolume-driver/blob/master/USING.md#using-overrides).
 
-**PREVIOUS**: [Exercise 2: Create a PVC](create_a_pvc.md)
-**NEXT** [Exercise 4: Customized StorageClass and PVC](customize_storageclass.md)
+* **PREVIOUS**: [Exercise 2: Create a PVC](create_a_pvc.md)
+* **NEXT** [Exercise 4: Customized StorageClass and PVC](customize_storageclass.md)

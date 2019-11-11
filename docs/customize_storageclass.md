@@ -112,8 +112,8 @@ In these generic use cases, we can use a single `StorageClass` to cater to many 
 * [HPE 3PAR/Primera](https://github.com/hpe-storage/python-hpedockerplugin/blob/master/docs/usage.md)
 * [HPE Nimble Storage and HPE Cloud Volumes](https://github.com/hpe-storage/flexvolume-driver/blob/master/USING.md)
 
-**PREVIOUS:** [Exercise 3: Create a Clone of PVC](create_a_cloneofpvc.md)
-**NEXT:** [Exercise 5: Create a StatefulSet](create_a_statefulset.md)
+* **PREVIOUS:** [Exercise 3: Create a Clone of PVC](create_a_cloneofpvc.md)
+* **NEXT:** [Exercise 5: Create a StatefulSet](create_a_statefulset.md)
 
 # Appendix
 

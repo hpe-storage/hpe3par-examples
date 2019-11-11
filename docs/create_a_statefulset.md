@@ -36,5 +36,5 @@ kubectl create -f https://raw.githubusercontent.com/NimbleStorage/container-exam
 
 StatefulSets on [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 
-**PREVIOUS:** [Exercise 4: Customized StorageClass and PVC](customize_storageclass.md)
-**NEXT:** [Exercise 6: Create a Deployment](create_a_deployment.md)
+* **PREVIOUS:** [Exercise 4: Customized StorageClass and PVC](customize_storageclass.md)
+* **NEXT:** [Exercise 6: Create a Deployment](create_a_deployment.md)

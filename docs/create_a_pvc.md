@@ -38,5 +38,5 @@ Inspect the `flexVolume` stanza. Is this what you'd expect comparing the `Storag
 ## Learn more
 Dynamic Volume Provisioning on [kubernetes.io](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-**PREVIOUS:** [Exercise 1: Create a StorageClass](create_a_storageclass.md)
-**NEXT:** [Exercise 3: Create a Clone of PVC](create_a_cloneofpvc.md)
+* **PREVIOUS:** [Exercise 1: Create a StorageClass](create_a_storageclass.md)
+* **NEXT:** [Exercise 3: Create a Clone of PVC](create_a_cloneofpvc.md)

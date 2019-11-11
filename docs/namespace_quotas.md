@@ -28,5 +28,5 @@ This exercise is not comprehensive. Please see "Learn more" below for more examp
 
 Storage Resource Quota on [kubernetes.io](https://kubernetes.io/docs/concepts/policy/resource-quotas/#storage-resource-quota)
 
-**PREVIOUS:** [Exercise 6: Create a Deployment](create_a_deployment.md)
-**NEXT:** [Bonus content: Tips & Tricks](tips_and_tricks.md)
+* **PREVIOUS:** [Exercise 6: Create a Deployment](create_a_deployment.md)
+* **NEXT:** [Bonus content: Tips & Tricks](tips_and_tricks.md)

@@ -33,5 +33,5 @@ kubectl create -f https://raw.githubusercontent.com/NimbleStorage/container-exam
 
 Deployments on [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
-**PREVIOUS:** [Exercise 5: Create a StatefulSet](create_a_statefulset.md)
-**NEXT:** [Exercise 7: Set Namespace quotas](namespace_quotas.md)
+* **PREVIOUS:** [Exercise 5: Create a StatefulSet](create_a_statefulset.md)
+* **NEXT:** [Exercise 7: Set Namespace quotas](namespace_quotas.md)
