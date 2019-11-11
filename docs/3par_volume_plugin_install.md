@@ -173,7 +173,7 @@ NAME      STATUS  VOLUME                                         CAPACITY  ACCES
 pvc-basic Bound   sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c0  32Gi     RWO           sc-basic       6s
 ```
 
-Here we can see the new Persistent Volume created:
+We can see the new Persistent Volume created:
 ```
 sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
 ```
