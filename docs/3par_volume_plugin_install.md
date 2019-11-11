@@ -164,15 +164,119 @@ spec:
 EOF
 ```
 
-Use the kubectl get pvc command to view the PVC
+Use the **kubectl get pvc** command to view the PVC
 
 The output is similar to this:
 ```
 $ kubectl get pvc
 NAME      STATUS  VOLUME                                         CAPACITY  ACCESS MODES  STORAGECLASS   AGE
-pvc-basic Bound   sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0  32Gi     RWO           sc-basic       19d
+pvc-basic Bound   sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c0  32Gi     RWO           sc-basic       6s
 ```
 
+Here we can see the new Persistent Volume created:
+```
+sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+```
+
+We can inspect the PVC further for additional information by using the following commands:
+
+```
+$ kubectl describe pvc pvc-basic
+```
+The output is similar to this:
+```
+$ kubectl describe pvc pvc-basic
+Name:          pvc-basic
+Namespace:     default
+StorageClass:  sc-basic
+Status:        Bound
+Volume:        sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+Labels:        <none>
+Annotations:   pv.kubernetes.io/bind-completed=yes
+               pv.kubernetes.io/bound-by-controller=yes
+               volume.beta.kubernetes.io/storage-provisioner=hpe.com/hpe
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      32Gi
+Access Modes:  RWO
+Events:
+  Type    Reason                Age                From                         Message
+  ----    ------                ----               ----                         -------
+  Normal  ExternalProvisioning  32s (x2 over 32s)  persistentvolume-controller  waiting for a volume to be created, either by external provisioner "hpe.com/hpe" or manually created by system administrator
+```
+
+We can also inspect the volume in a similar manner:
+```
+$ kubectl describe sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
+```
+
+The output is similar to this:
+```
+# oc describe pv sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+Name:            sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+Labels:          <none>
+Annotations:     hpe.com/docker-volume-name=sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+                 pv.kubernetes.io/provisioned-by=hpe.com/hpe
+                 volume.beta.kubernetes.io/storage-class=sc-basic
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    sc-basic
+Status:          Bound
+Claim:           default/pvc-basic
+Reclaim Policy:  Delete
+Access Modes:    RWO
+Capacity:        32Gi
+Node Affinity:   <none>
+Message:
+Source:
+    Type:       FlexVolume (a generic volume resource that is provisioned/attached using an exec based plugin)
+    Driver:     hpe.com/hpe
+    FSType:
+    SecretRef:  <nil>
+    ReadOnly:   false
+    Options:    map[name:sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c provisioning:full]
+Events:         <none>
+```
+
+With the describe command command you can see the volume parameters applied to the volume.
+
+You can also inspect further the volume using the **docker volume inspect** command:
+
+```
+docker volume inspect sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+```
+
+# docker volume inspect sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+[
+    {
+        "Driver": "hpe",
+        "Labels": null,
+        "Mountpoint": "/",
+        "Name": "sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c",
+        "Options": {},
+        "Scope": "global",
+        "Status": {
+            "volume_detail": {
+                "3par_vol_name": "dcv-oSRLcoqfQdSwR52lvnze8A",
+                "backend": "DEFAULT",
+                "compression": null,
+                "cpg": "SSD_r6",
+                "domain": null,
+                "flash_cache": null,
+                "fsMode": null,
+                "fsOwner": null,
+                "id": "a1244b72-8a9f-41d4-b047-9da5be7cdef0",
+                "mountConflictDelay": 30,
+                "provisioning": "full",
+                "size": 32,
+                "snap_cpg": "FC_r6"
+            }
+        }
+    }
+]
+
+With this command, we can get the underlying 3PAR volume name:
+```
+"3par_vol_name": "dcv-oSRLcoqfQdSwR52lvnze8A"
+```
 
 **PREVIOUS:** [Exercise 4: Installing Helm](install_helm.md)
 
