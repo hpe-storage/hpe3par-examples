@@ -26,4 +26,5 @@ Most of day two will consist of manipulating storage objects in Kubernetes.
 * [Exercise 4: Customized StorageClass and PVC](customize_storageclass.md)
 * [Exercise 5: Create a StatefulSet](create_a_statefulset.md)
 * [Exercise 6: Create a Deployment](create_a_deployment.md)
+* [Exercise 7: Set Namespace quotas](namespace_quotas.md)
 * [Bonus content: Tips & Tricks](tips_and_tricks.md)
