@@ -39,7 +39,7 @@ The output is similar to this:
 ```
 $ helm repo add hpe https://hpe-storage.github.io/co-deployments
 "hpe" has been added to your repositories
-$ helm install -f values.yml --name hpe-flexvolume hpe/hpe-flexvolume-driver --namespace kube-system
+$ helm install -f values.yml --name hpe-flexvolume hpe/hpe-flexvolume-driver --version 3.0.0 --namespace kube-system
 NAME: hpe-flexvolume
 LAST DEPLOYED: Mon Sep 23 11:00:28 2019
 NAMESPACE: kube-system
@@ -94,9 +94,85 @@ $ kubectl create -f pvc.yml
 persistentvolumeclaim/my-pvc created
 $ kubectl get pvc/my-pvc
 NAME   STATUS VOLUME                 CAPACITY ACCESS MODES STORAGECLASS AGE
-my-pvc Bound  hpe-standard-9037d5... 32Gi     RWO          hpe-standard 9s
+my-pvc Bound  hpe-standard-9a87fb... 32Gi     RWO          hpe-standard 9s
 ```
 
+We can see the new Persistent Volume created:
+```
+hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+```
+
+We can inspect the PVC further for additional information by using the following commands:
+
+```
+$ kubectl describe pvc my-pvc
+```
+
+The output is similar to this:
+```
+kubectl describe pvc my-pvc
+Name:          my-pvc
+Namespace:     default
+StorageClass:  hpe-standard
+Status:        Bound
+Volume:        hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+Labels:        <none>
+Annotations:   kubectl.kubernetes.io/last-applied-configuration:
+                 {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"my-pvc","namespace":"default"},"spec":{"accessModes...
+               pv.kubernetes.io/bind-completed: yes
+               pv.kubernetes.io/bound-by-controller: yes
+               volume.beta.kubernetes.io/storage-provisioner: hpe.com/nimble
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      32Gi
+Access Modes:  RWO
+VolumeMode:    Filesystem
+Mounted By:    <none>
+Events:        <none>
+```
+
+We can also inspect the volume in a similar manner:
+```
+$ kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4
+```
+
+The output is similar to this:
+```
+kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+Name:            hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+Labels:          <none>
+Annotations:     hpe.com/docker-volume-name: hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+                 pv.kubernetes.io/provisioned-by: hpe.com/nimble
+                 volume.beta.kubernetes.io/storage-class: hpe-standard
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    hpe-standard
+Status:          Bound
+Claim:           default/my-pvc
+Reclaim Policy:  Delete
+Access Modes:    RWO
+VolumeMode:      Filesystem
+Capacity:        32Gi
+Node Affinity:   <none>
+Message:
+Source:
+    Type:       FlexVolume (a generic volume resource that is provisioned/attached using an exec based plugin)
+    Driver:     hpe.com/nimble
+    FSType:
+    SecretRef:  nil
+    ReadOnly:   false
+    Options:    map[description:Volume created by HPE Volume Driver for Kubernetes FlexVolume Plugin name:hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b]
+Events:         <none>
+```
+
+With the describe command  you can see the volume parameters applied to the volume.
+
+Let's recap what we have learned.
+
+1. We created a default StorageClass for our volumes.
+2. We created a PVC that created a volume from the storageClass.
+3. We can use **kubectl get** to list the `StorageClass`, `PVC` and `PV`.
+4. We can use **kubectl describe** to get details on the `StorageClass`, `PVC` or `PV`
+
+Now we are ready to deploy apps with persistent volumes.
 
 
 **PREVIOUS:** [Exercise 4: Installing Helm](install_helm.md)

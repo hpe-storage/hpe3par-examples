@@ -206,7 +206,7 @@ Events:
 
 We can also inspect the volume in a similar manner:
 ```
-$ kubectl describe sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
+$ kubectl describe pv sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
 ```
 
 The output is similar to this:
@@ -236,47 +236,17 @@ Source:
 Events:         <none>
 ```
 
-With the describe command command you can see the volume parameters applied to the volume.
+With the describe command you can see the volume parameters applied to the volume.
 
-You can also inspect further the volume using the **docker volume inspect** command:
+Let's recap what we have learned.
 
-```
-docker volume inspect sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
-```
+1. We created a default StorageClass for our volumes.
+2. We created a PVC that created a volume from the storageClass.
+3. We can use **kubectl get** to list the `StorageClass`, `PVC` and `PV`.
+4. We can use **kubectl describe** to get details on the `StorageClass`, `PVC` or `PV`
 
-# docker volume inspect sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
-[
-    {
-        "Driver": "hpe",
-        "Labels": null,
-        "Mountpoint": "/",
-        "Name": "sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c",
-        "Options": {},
-        "Scope": "global",
-        "Status": {
-            "volume_detail": {
-                "3par_vol_name": "dcv-oSRLcoqfQdSwR52lvnze8A",
-                "backend": "DEFAULT",
-                "compression": null,
-                "cpg": "SSD_r6",
-                "domain": null,
-                "flash_cache": null,
-                "fsMode": null,
-                "fsOwner": null,
-                "id": "a1244b72-8a9f-41d4-b047-9da5be7cdef0",
-                "mountConflictDelay": 30,
-                "provisioning": "full",
-                "size": 32,
-                "snap_cpg": "FC_r6"
-            }
-        }
-    }
-]
+Now we are ready to deploy apps with persistent volumes.
 
-With this command, we can get the underlying 3PAR volume name:
-```
-"3par_vol_name": "dcv-oSRLcoqfQdSwR52lvnze8A"
-```
 
 **PREVIOUS:** [Exercise 4: Installing Helm](install_helm.md)
 
