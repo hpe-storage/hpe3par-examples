@@ -32,12 +32,14 @@ parameters:
   perfPolicy: "SQL Server"
 reclaimPolicy: Delete
 ```
+**Gotcha:** A Kubernetes cluster may have multiple storage classes marked "default" but will throw an error if a `PVC` is submitted without an explicit `storageClassName` set.
 
-Storage Classes are easiest inspected with:
+Storage classes are easiest inspected with:
 
 ```
 kubectl get sc/database -o yaml
 ```
+Doing a simple `kubectl get sc` will enumerate the storage classes and show which one is the default.
 
 **Note:** "sc" is a valid alias for "storageclass".
 
