@@ -46,7 +46,7 @@ $ helm install stable/wordpress
 
 We will  customize it to our environment. We will specify the service and configure the ingress rules to point to our DNS name for the site.
 ```
-$ helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g<group_number>.example.com
+$ helm install stable/wordpress --version 7.6.0 --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g<group_number>.example.com
 ```
 
 It should look similar to this:
