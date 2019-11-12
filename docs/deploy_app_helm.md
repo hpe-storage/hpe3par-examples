@@ -51,7 +51,7 @@ $ helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true
 
 It should look similar to this:
 ```
-PS C:\Users\Administrator> helm install stable/wordpress --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g10.example.com
+PS C:\Users\Administrator> helm install stable/wordpress --version 7.6.0 --set serviceType=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g10.example.com
 NAME:   snug-turtle
 LAST DEPLOYED: Mon Nov  4 20:20:43 2019
 NAMESPACE: default
