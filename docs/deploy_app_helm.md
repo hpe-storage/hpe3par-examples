@@ -39,10 +39,7 @@ NAME                    CHART VERSION   APP VERSION     DESCRIPTION
 stable/wordpress        7.6.0           5.2.4           Web publishing platform for building blogs and websites.
 ```
 
-Now we can install WordPress using the defaults but that isn't what we want.
-```
-$ helm install stable/wordpress
-```
+Now we can install WordPress.
 
 We will  customize it to our environment. We will specify the service and configure the ingress rules to point to our DNS name for the site.
 ```
