@@ -4,6 +4,8 @@ The HPE Dynamic Provisioner supports creating clones of an existing `PersistentV
 ## Create a PersistentVolumeClaim with an annotation
 Creating a clone of a `PVC`. Assume we kept the `PVC` around from the previous exercise.
 
+**Important:** The current version of the driver expects a filesystem on the parent volume on the clone to be created. Please see the Appendix below for a `Pod` example.
+
 Create a new `PVC`:
 ```
 ---
@@ -38,3 +40,26 @@ Using overrides in the Nimble [docs](https://github.com/hpe-storage/flexvolume-d
 
 * **PREVIOUS**: [Exercise 2: Create a PVC](create_a_pvc.md)
 * **NEXT** [Exercise 4: Customized StorageClass and PVC](customize_storageclass.md)
+
+# Appendix
+This creates a simple `Pod` that uses the "mypvc" 'PVC'.
+
+```yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+  - name: myapp-container
+    image: busybox
+    command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']
+    volumeMounts:
+      - mountPath: /data
+        name: data
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: mypvc
+```
