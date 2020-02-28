@@ -66,11 +66,9 @@ You should see output similar to below. As you can see, each node has a role as 
 ```
 $ kubectl get nodes
 NAME              STATUS   ROLES    AGE   VERSION
-kube-g1-master1   Ready    master   37d   v1.15.3
-kube-g1-master2   Ready    master   37d   v1.15.3
-kube-g1-master3   Ready    master   37d   v1.15.3
-kube-g1-node1     Ready    <none>   37d   v1.15.3
-kube-g1-node2     Ready    <none>   37d   v1.15.3
+kube-g1-master1   Ready    master   37d   v1.16.6
+kube-g1-node1     Ready    <none>   37d   v1.16.6
+kube-g1-node2     Ready    <none>   37d   v1.16.6
 ```
 
 You can list any available pods.
