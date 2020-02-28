@@ -1,6 +1,6 @@
 # Exercise 5: Install the HPE 3PAR Volume Driver for Docker version 3.3
 
-Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin)
+Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/)
 
 ## Automated Installer for 3PAR Docker Volume plugin (Ansible)
 These are Ansible playbooks to automate the install of the HPE 3PAR Volume Plug-in for Docker for use within Kubernetes/OpenShift environments.
