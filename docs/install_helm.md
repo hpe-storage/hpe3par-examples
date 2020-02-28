@@ -10,8 +10,8 @@ The Helm client can be installed either from source, or from pre-built binary re
 ## From the Binary Releases
 Every release of Helm provides binary releases for a variety of OSes. These binary versions can be manually downloaded and installed.
 
-1. Download your desired version
-2. Unpack it (`tar -zxvf helm-v2.0.0-linux-amd64.tgz`)
+1. Download your desired version. https://github.com/helm/helm/releases/latest
+2. Unpack it (`tar -zxvf helm-v3*.tgz`)
 3. Find the `helm` binary in the unpacked directory, and move it to its desired destination (`mv linux-amd64/helm /usr/local/bin/helm`)
 
 From there, you should be able to run the client: `helm help`.
@@ -21,54 +21,22 @@ From there, you should be able to run the client: `helm help`.
 choco install kubernetes-helm
 ```
 
-## INSTALLING TILLER
-Tiller, the server portion of Helm, typically runs inside of your Kubernetes cluster.
-
-Create Service Account and RBAC for Tiller.
-
+Once you have Helm ready, you can add a chart repository. One popular starting location is the official Helm stable charts:
 ```
-notepad rbac_tiller.yml
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 
-Copy the following:
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: tiller
-  namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: tiller
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-  - kind: ServiceAccount
-    name: tiller
-    namespace: kube-system
-```    
+Once this is installed, you will be able to list the charts you can install:
 
+```helm search repo stable
+NAME                                    CHART VERSION   APP VERSION                     DESCRIPTION
+stable/acs-engine-autoscaler            2.2.2           2.1.1                           DEPRECATED Scales worker nodes within agent pools
+stable/aerospike                        0.2.8           v4.5.0.5                        A Helm chart for Aerospike in Kubernetes
+stable/airflow                          4.1.0           1.10.4                          Airflow is a platform to programmatically autho...
+stable/ambassador                       4.1.0           0.81.0                          A Helm chart for Datawire Ambassador
+# ... and many more
 ```
-kubectl apply -f rbac_tiller.yml
-```
-
-
-### Easy In-Cluster Installation
-
-The easiest way to install `tiller` into the cluster and use the Service Account is simply to run:
-```
-helm init --service-account tiller --history-max 200
-```
-
-This will validate that helm’s local environment is set up correctly (and set it up if necessary). Then it will connect to whatever cluster `kubectl` connects to by default (`kubectl config view`). Once it connects, it will install tiller into the kube-system namespace.
-
-After **helm init**, you should be able to run `kubectl get pods --namespace kube-system` and see Tiller running.
-
 
 **PREVIOUS:** [Exercise 3: Deploy your first pod](deploy_first_pod.md)
 
-**NEXT:** [Exercise 5: Deploy HPE 3PAR Volume Plugin for Docker](3par_volume_plugin_install.md) or [Deploy HPE Nimble Volume Plugin for Docker](nimble_volume_plugin_install.md)
+**NEXT:** [Exercise 5: Deploy HPE 3PAR/Primera CSI Driver](3par_volume_plugin_install.md) or [Deploy HPE Nimble CSI Driver](nimble_volume_plugin_install.md)
