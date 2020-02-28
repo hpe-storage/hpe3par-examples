@@ -12,7 +12,7 @@ In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using H
 Create a `values.yml` file:
 
 ```
-nano values.yml
+notepad values.yml
 ```
 
 Copy and paste the following:
@@ -64,7 +64,7 @@ Now let's test the deployment by creating a PVC.
 Create a `pvc.yml` file:
 
 ```
-nano pvc.yml
+notepad pvc.yml
 ```
 
 Copy and paste the following:
