@@ -113,7 +113,7 @@ IP:           10.233.82.7
 
 ```
 
-This IP address (10.233.82.7) is only accessible from within the cluster, so lets use `port-forward` to expose the port temporarily outside the cluster.
+This IP address (10.233.82.7) is only accessible from within the cluster, so lets use `port-forward` to expose the `pod` port temporarily outside the cluster.
 
 ```
 $ kubectl port-forward first-nginx-pod-5bb4787f8d-7ndj6 5000:80
@@ -164,4 +164,4 @@ Once done, exit the pod.
 
 **PREVIOUS:** [Exercise 2: Install Kubernetes Dashboard](dashboard.md)
 
-**NEXT:** [Exercise 4: Installing Helm](install_helm.md)
+**NEXT:** [Exercise 4: Deploy HPE 3PAR/Primera CSI Driver](3par_volume_plugin_install.md) or [Deploy HPE Nimble CSI Driver](nimble_volume_plugin_install.md)

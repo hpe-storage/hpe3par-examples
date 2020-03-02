@@ -111,17 +111,20 @@ snug-turtle-mariadb-0                   1/1     Running             0          2
 snug-turtle-wordpress-57885c775-ds97z   1/1     Running             0          2m37s
 ```
 
-Once complete, open a browser and go to:
-```
-http://wp.dev.g<group_number>.example.com
-```
+Let's use `port-forward` to expose the `pod` port temporarily outside the cluster.
 
-It should look like the following:
 ```
-http://wp.dev.g10.example.com
+$ kubectl port-forward first-nginx-pod-5bb4787f8d-7ndj6 5000:80
+
+Forwarding from 127.0.0.1:5000 -> 80
+Forwarding from [::1]:5000 -> 80
 ```
+>Note: port-forward is meant for temporarily exposing an application outside of a Kubernetes cluster. For a more permanent solution, look into Ingress.
 
-
+Finally, we can open a browser and go to:
+```
+http://127.0.0.1:5000/
+```
 
 If everything was successful you will see your new WordPress site.
 
@@ -137,10 +140,8 @@ To get your username/password.
 
 You can log into the site and blog away!
 ```
-http://wp.dev.g<group_number>.example.com/admin
+http://127.0.0.1:5000/admin
 ```
-
-
 
 
 **HOME:** [Kubernetes Training Hands on Lab](https://hpe-storage.github.io/hpe3par-examples/)

@@ -1,4 +1,4 @@
-# Exercise 4: Installing Helm
+# Exercise: Installing Helm
 
 Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application. There are two parts to Helm: The Helm client (helm) and the Helm server (Tiller). This guide shows how to install the client, and then proceeds to show two ways to install the server.
 
@@ -36,7 +36,3 @@ stable/airflow                          4.1.0           1.10.4                  
 stable/ambassador                       4.1.0           0.81.0                          A Helm chart for Datawire Ambassador
 # ... and many more
 ```
-
-**PREVIOUS:** [Exercise 3: Deploy your first pod](deploy_first_pod.md)
-
-**NEXT:** [Exercise 5: Deploy HPE 3PAR/Primera CSI Driver](3par_volume_plugin_install.md) or [Deploy HPE Nimble CSI Driver](nimble_volume_plugin_install.md)

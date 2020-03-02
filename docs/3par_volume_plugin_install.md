@@ -1,4 +1,4 @@
-# Exercise 5: Install the HPE 3PAR/Primera CSI Driver
+# Exercise 4: Install the HPE 3PAR/Primera CSI Driver
 
 ## This page will be updated upon the release of the HPE 3PAR/Primera CSI Driver.
 
@@ -11,6 +11,6 @@ For information on how to configure the HPE 3PAR/Primera FlexVolume Driver for K
 &nbsp;
 
 
-**PREVIOUS:** [Exercise 4: Installing Helm](install_helm.md)
+**PREVIOUS:** [Exercise 3: Deploy your first pod](deploy_first_pod.md)
 
-**NEXT:** [Exercise 6: Deploying Persistent Apps (Wordpress) with Helm](deploy_app_helm.md)
+**NEXT:** [Exercise 5: Deploying Persistent Apps (Wordpress) with Helm](deploy_app_helm.md)
