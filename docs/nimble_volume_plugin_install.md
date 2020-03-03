@@ -25,7 +25,7 @@ Edit the `values.yaml` file and update the Nimble `backend` array parameter IP. 
 ```
 # vi hpe-csi-driver/values.yaml
 
-Modify the following section.
+***Modify the following section.***
 
 secret:
   # parameters for nimble
