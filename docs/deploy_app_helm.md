@@ -2,7 +2,7 @@
 
 Now that we have access to HPE Storage within Kubernetes, let's deploy an application with persistent volumes.
 
-For this demo, we will be using WordPress as a good example.
+For this demo, we will be using WordPress as an example.
 
 ## Before you begin
 
