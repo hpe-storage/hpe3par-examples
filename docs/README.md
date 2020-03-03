@@ -13,7 +13,7 @@ The flow of the guide will be as follows:
 * [Exercise 5: Deploying Persistent Apps (Wordpress) with Helm](deploy_app_helm.md)
 
 #### Optional Exercise
-* [Exercise: Installing Helm](install_helm.md)
+* [Optional: Installing Helm](install_helm.md)
 * [Optional: Setting up Ingress](optional_ingress.md)
 * [Optional: Changing the default StorageClass](default_storageclass.md)
 
