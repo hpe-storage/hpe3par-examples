@@ -74,6 +74,7 @@ metadata:
 >Finally press **Ctrl+D**
 
 >The command will then be executed.
+
 ---
 
 ### Create ClusterRoleBinding
