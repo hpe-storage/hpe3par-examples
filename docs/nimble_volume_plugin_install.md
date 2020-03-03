@@ -1,29 +1,26 @@
-# Exercise 5: Install the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin 3.0
+# Exercise 5: Install the HPE Nimble CSI Driver for Kubernetes
 
->Adapted from Michael Mattsson's post on HPE Storage Tech Insiders: [Released: HPE Volume Driver for Kubernetes FlexVolume Plugin 3.0 and more!](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/Released-HPE-Volume-Driver-for-Kubernetes-FlexVolume-Plugin-3-0/ba-p/7063875#.Xa87O-hKiUk)
+HPE Storage has vastly improved the delivery mechanism of the Storage Integrations by enabling Kubernetes administrators to deploy and manage the CSI Driver and CSP as native Kubernetes workloads. The workloads themselves may be declared directly with kubectl via YAML or deployed with Helm — the package manager for Kubernetes applications.
 
+Detailed instructions are available in the [HPE Storage Container Integrations GitHub repository](https://github.com/hpe-storage/co-deployments) on how to deploy the CSI Driver via Helm or using YAML.
 
-We’ve vastly improved the delivery mechanism of the integrations by enabling Kubernetes administrators to deploy and manage the FlexVolume Driver and Dynamic Provisioner as native Kubernetes workloads. The workloads themselves may be declared directly with kubectl or deployed with Helm — the package manager for Kubernetes applications.
+In this demo, we will deploy the CSI Driver and CSP for Nimble Storage using Helm. Helm is the recommended way to deploy the CSI drivers for HPE Storage products.
 
-Detailed instructions are available in the [FlexVolume Driver GitHub repository](https://github.com/hpe-storage/flexvolume-driver) on how to deploy the integration either standalone or using Helm.
-
-In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using Helm. Helm is the recommended way to deploy both the FlexVolume and CSI driver for HPE Nimble storage products.
-
-Clone the latest Nimble Helm repo and deploy the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin:
+Clone the latest Nimble Helm repo and deploy the HPE Nimble CSI Driver for Kubernetes Helm chart:
 
 ```
-# git clone https://github.com/hpe-storage/co-deployments
+$ git clone https://github.com/hpe-storage/co-deployments
 ```
 
 The output is similar to this:
 ```
-# git clone https://github.com/hpe-storage/co-deployments
-# cd co-deployments/helm/charts/
+$ git clone https://github.com/hpe-storage/co-deployments
+$ cd co-deployments/helm/charts/
 ```
 
 Edit the `values.yaml` file and update the Nimble `backend` array parameter IP. Do not modify anything else.
 ```
-# vi hpe-csi-driver/values.yaml
+$ vi hpe-csi-driver/values.yaml
 
 ***Modify the following section.***
 
@@ -40,12 +37,12 @@ secret:
 
 Install the Nimble CSI Driver Helm chart.
 ```
-# helm install nimble-csi hpe-csi-driver --namespace kube-system -f hpe-csi-driver/values.yaml
+$ helm install nimble-csi hpe-csi-driver --namespace kube-system -f hpe-csi-driver/values.yaml
 ```
 
 The output is similar to this:
 ```
-# helm install nimble-csi hpe-csi-driver --namespace kube-system -f hpe-csi-driver/values.yaml
+$ helm install nimble-csi hpe-csi-driver --namespace kube-system -f hpe-csi-driver/values.yaml
 NAME: nimble-csi
 LAST DEPLOYED: Mon Mar  2 22:26:34 2020
 NAMESPACE: kube-system
@@ -57,7 +54,7 @@ TEST SUITE: None
 Let's verify everything started up correctly:
 
 ```
-# kubectl get pods -n kube-system | grep -e csi -e csp
+$ kubectl get pods -n kube-system | grep -e csi -e csp
 
 hpe-csi-controller-667578b549-5k58p        4/4     Running   0          98m
 hpe-csi-node-lgrmq                         2/2     Running   0          98m
@@ -71,7 +68,7 @@ Now let's test the deployment by creating a PVC.
 Create a `pvc.yml` file:
 
 ```
-# vi pvc.yml
+$ vi pvc.yml
 ```
 
 Copy and paste the following:
@@ -92,12 +89,12 @@ spec:
 Create the PVC:
 
 ```
-# kubectl create -f pvc.yml
+$ kubectl create -f pvc.yml
 ```
 
 The output is similar to this:
 ```
-# kubectl create -f pvc.yml
+$ kubectl create -f pvc.yml
 persistentvolumeclaim/my-pvc created
 
 # kubectl get pvc
@@ -118,7 +115,7 @@ $ kubectl describe pvc mypvc
 
 The output is similar to this:
 ```
-# kubectl describe pvc mypvc
+$ kubectl describe pvc mypvc
 Name:          mypvc
 Namespace:     default
 StorageClass:  hpe-standard
@@ -143,7 +140,7 @@ $ kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4
 
 The output is similar to this:
 ```
-# kubectl describe pvc mypvc
+$ kubectl describe pvc mypvc
 Name:          mypvc
 Namespace:     default
 StorageClass:  hpe-standard

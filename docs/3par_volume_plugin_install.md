@@ -1,6 +1,6 @@
 # Exercise 4: Install the HPE 3PAR/Primera CSI Driver
 
-## This page will be updated upon the release of the HPE 3PAR/Primera CSI Driver.
+## This page will be updated upon release of the HPE 3PAR/Primera CSI Driver.
 
 ## Stay Tuned!
 

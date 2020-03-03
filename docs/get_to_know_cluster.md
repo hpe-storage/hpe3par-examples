@@ -19,9 +19,9 @@ where `command`, `TYPE`, `NAME`, and `flags` are:
 
 * `TYPE`: Specifies the resource type. Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. For example, the following commands produce the same output:
 ```
-  kubectl get pod pod1
-  kubectl get pods pod1
-  kubectl get po pod1
+$ kubectl get pod pod1
+$ kubectl get pods pod1
+$ kubectl get po pod1
 ```
 
 * `NAME`: Specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed, for example `kubectl get pods`.
@@ -37,20 +37,20 @@ In order to communicate with the Kubernetes cluster, `kubectl` looks for a file 
 
 To view your config file:
 ```
-kubectl config view
+$ kubectl config view
 ```
 
 
 Check that kubectl and the config file is properly configured by getting the cluster state:
 
 ```
-  kubectl cluster-info
+$ kubectl cluster-info
 ```
 If you see a URL response, kubectl is correctly configured to access your cluster.
 
 The output is similar to this:
 ```
-$ kubectl cluster-info
+# kubectl cluster-info
 Kubernetes master is running at https://10.90.200.11:6443
 coredns is running at https://10.90.200.11:6443/api/v1/namespaces/kube-system/services/coredns:dns/proxy
 kubernetes-dashboard is running at https://10.90.200.11:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy
@@ -60,7 +60,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 Now lets look at the nodes within our cluster.
 ```
-  kubectl get nodes
+$ kubectl get nodes
 ```
 You should see output similar to below. As you can see, each node has a role as master or worker node (\<none>).
 ```
@@ -73,7 +73,7 @@ kube-g1-node2     Ready    <none>   37d   v1.16.6
 
 You can list any available pods.
 ```
-  kubectl get pods
+$ kubectl get pods
 ```
 
 

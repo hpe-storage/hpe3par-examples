@@ -1,5 +1,7 @@
 # Exercise 5: Install the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin 3.0
 
+# DEPRECATED with release of Nimble CSI Driver
+
 >Adapted from Michael Mattsson's post on HPE Storage Tech Insiders: [Released: HPE Volume Driver for Kubernetes FlexVolume Plugin 3.0 and more!](https://community.hpe.com/t5/HPE-Storage-Tech-Insiders/Released-HPE-Volume-Driver-for-Kubernetes-FlexVolume-Plugin-3-0/ba-p/7063875#.Xa87O-hKiUk)
 
 
@@ -12,7 +14,7 @@ In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using H
 Create a `values.yml` file:
 
 ```
-notepad values.yml
+# vi values.yml
 ```
 
 Copy and paste the following:
@@ -32,12 +34,12 @@ storageClass:
 Add Helm repo and deploy the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin:
 
 ```
-helm repo add hpe https://hpe-storage.github.io/co-deployments
+# helm repo add hpe https://hpe-storage.github.io/co-deployments
 ```
 
 The output is similar to this:
 ```
-$ helm repo add hpe https://hpe-storage.github.io/co-deployments
+# helm repo add hpe https://hpe-storage.github.io/co-deployments
 "hpe" has been added to your repositories
 $ helm install -f values.yml --name hpe-flexvolume hpe/hpe-flexvolume-driver --version 3.0.0 --namespace kube-system
 NAME: hpe-flexvolume
@@ -49,12 +51,12 @@ STATUS: DEPLOYED
 The `DaemonSet` workload type automatically deploys one replica of the FlexVolume driver on each node of the cluster and ensures all the host packages are installed and necessary services are running prior to serving the cluster. We can see this by querying the `DaemonSet`.
 
 ```
-kubectl get ds/hpe-flexvolume-driver -n kube-system
+# kubectl get ds/hpe-flexvolume-driver -n kube-system
 ```
 
 The output is similar to this:
 ```
-$ kubectl get ds/hpe-flexvolume-driver -n kube-system
+# kubectl get ds/hpe-flexvolume-driver -n kube-system
 NAME                    DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE  AGE
 hpe-flexvolume-driver   3         3         3       3            3          11m
 ```
@@ -64,7 +66,7 @@ Now let's test the deployment by creating a PVC.
 Create a `pvc.yml` file:
 
 ```
-notepad pvc.yml
+# vi pvc.yml
 ```
 
 Copy and paste the following:
@@ -85,32 +87,32 @@ spec:
 Create the PVC:
 
 ```
-kubectl create -f pvc.yml
+# kubectl create -f pvc.yml
 ```
 
 The output is similar to this:
 ```
-$ kubectl create -f pvc.yml
+# kubectl create -f pvc.yml
 persistentvolumeclaim/my-pvc created
-$ kubectl get pvc/my-pvc
+# kubectl get pvc/my-pvc
 NAME   STATUS VOLUME                 CAPACITY ACCESS MODES STORAGECLASS AGE
 my-pvc Bound  hpe-standard-9a87fb... 32Gi     RWO          hpe-standard 9s
 ```
 
 We can see the new Persistent Volume created:
 ```
-hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+# hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
 ```
 
 We can inspect the PVC further for additional information by using the following commands:
 
 ```
-$ kubectl describe pvc my-pvc
+# kubectl describe pvc my-pvc
 ```
 
 The output is similar to this:
 ```
-kubectl describe pvc my-pvc
+# kubectl describe pvc my-pvc
 Name:          my-pvc
 Namespace:     default
 StorageClass:  hpe-standard
@@ -132,12 +134,12 @@ Events:        <none>
 
 We can also inspect the volume in a similar manner:
 ```
-$ kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4
+# kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4
 ```
 
 The output is similar to this:
 ```
-kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+# kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
 Name:            hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
 Labels:          <none>
 Annotations:     hpe.com/docker-volume-name: hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b

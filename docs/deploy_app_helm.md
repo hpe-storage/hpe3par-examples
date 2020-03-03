@@ -15,7 +15,7 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
 
   * look for the default flag
   ```
-  kubectl get sc
+  $ kubectl get sc
   ```
 
   * refer to [Setting default StorageClass](default_storageclass.md)
@@ -23,7 +23,7 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
 * Ingress controllers deployed for external access to your Kubernetes cluster **(pre-configured in HoL)**
 
   ```
-  kubectl get ds -n kube-system | grep traefik
+  $ kubectl get ds -n kube-system | grep traefik
   ```
   * refer to [Configuring Ingress](optional_ingress.md)
 <br/>
@@ -35,8 +35,8 @@ There are some pre-requisites to ensure a successful deployment. If you have bee
 We will be using the stable/WordPress chart from the upstream repo. First we need to install the `stable` repository:
 
 ```
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-helm repo updated
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+$ helm repo updated
 "stable" has been added to your repositories
 [root@DESKTOP-Q9AGN1K workspace]# helm repo update
 Hang tight while we grab the latest from your chart repositories...
@@ -59,7 +59,7 @@ $ helm install my-wordpress stable/wordpress --version 9.0.1 --set service.type=
 
 It should look similar to this:
 ```
-# helm install my-wordpress stable/wordpress --version 9.0.1 --set service.type=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g18.kubehol.net
+$ helm install my-wordpress stable/wordpress --version 9.0.1 --set service.type=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g18.kubehol.net
 NAME: my-wordpress
 LAST DEPLOYED: Mon Mar  2 23:33:46 2020
 NAMESPACE: default
@@ -86,7 +86,7 @@ To access your WordPress site from outside the cluster follow the steps below:
 
 This will take a few minutes for everything to deploy. You can check the status with:
 ```
-# kubectl get pods
+$ kubectl get pods
 NAME                               READY   STATUS    RESTARTS   AGE
 my-wordpress-675b47f97-hnd8p       1/1     Running   0          77s
 my-wordpress-mariadb-0             1/1     Running   0          77s

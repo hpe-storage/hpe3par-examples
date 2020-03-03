@@ -4,13 +4,13 @@
 The Dashboard UI is not deployed by default. To deploy it, run the following command:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
 ```
 
 ## Accessing the Dashboard UI
 You can access Dashboard using `kubectl` from your desktop. Running this command will not work through SSH (i.e. Putty).
 ```
-kubectl proxy
+$ kubectl proxy
 ```
 Kubectl will make Dashboard available at:
 ```
@@ -39,7 +39,7 @@ metadata:
 Run `kubectl apply`:
 
 ```
-kubectl apply -f dashboard-adminuser.yml
+$ kubectl apply -f dashboard-adminuser.yml
 ```
 
 ### Create ClusterRoleBinding
@@ -65,7 +65,7 @@ subjects:
 Run `kubectl apply`:
 
 ```
-kubectl apply -f dashboard-adminuser.yml
+$ kubectl apply -f dashboard-adminuser.yml
 ```
 
 ## Get Token
@@ -73,19 +73,15 @@ kubectl apply -f dashboard-adminuser.yml
 Now we are ready to get the token from the admin-user in order to log into the dashboard. Run the following command:
 
 ```
-kubectl -n kube-system get secret | grep admin-user
+$ kubectl -n kube-system get secret | grep admin-user
 ```
 
-It will return something similar to:
-
-```
-admin-user-token-n7jx9
-```
+It will return something similar to: `admin-user-token-n7jx9`
 
 Now run:
 
 ```
-kubectl -n kube-system describe secret admin-user-token-n7jx9
+$ kubectl -n kube-system describe secret admin-user-token-n7jx9
 ```
 
 Copy the token value:

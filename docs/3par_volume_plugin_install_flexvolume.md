@@ -1,4 +1,6 @@
-# Exercise 5: Install the HPE 3PAR Volume Driver for Docker version 3.3
+# Exercise 4: Install the HPE 3PAR Volume Driver for Docker version 3.3
+
+# DEPRECATED with release of 3PAR/Primera CSI Driver
 
 Adapted from the official HPE 3PAR Volume Driver documentation found on their Github page: [HPE 3PAR and Primera Volume Plugin for Docker](https://github.com/hpe-storage/python-hpedockerplugin/)
 
@@ -85,7 +87,7 @@ Modify the Ansible hosts file to define your Master/Worker nodes as well as wher
 
 Make sure you are in the `python-hpedockerplugin/ansible_3par_docker_plugin` directory.
 ```
-$ vi hosts
+# vi hosts
 ```
 
 Change this to match your group.
@@ -116,7 +118,7 @@ Save and exit
 Make sure you are in the `python-hpedockerplugin/ansible_3par_docker_plugin` directory.
 
 ```
-ansible-playbook -i hosts install_hpe_3par_volume_driver.yml
+# ansible-playbook -i hosts install_hpe_3par_volume_driver.yml
 ```
 
 Once complete you will be ready to start using the HPE 3PAR Volume Plug-in for Docker.
@@ -168,7 +170,7 @@ Use the **kubectl get pvc** command to view the PVC
 
 The output is similar to this:
 ```
-$ kubectl get pvc
+# kubectl get pvc
 NAME      STATUS  VOLUME                                         CAPACITY  ACCESS MODES  STORAGECLASS   AGE
 pvc-basic Bound   sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c0  32Gi     RWO           sc-basic       6s
 ```
@@ -181,7 +183,7 @@ sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
 We can inspect the PVC further for additional information by using the following commands:
 
 ```
-$ kubectl describe pvc pvc-basic
+# kubectl describe pvc pvc-basic
 ```
 The output is similar to this:
 ```
@@ -206,7 +208,7 @@ Events:
 
 We can also inspect the volume in a similar manner:
 ```
-$ kubectl describe pv sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
+# kubectl describe pv sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
 ```
 
 The output is similar to this:

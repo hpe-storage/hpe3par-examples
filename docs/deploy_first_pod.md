@@ -6,7 +6,7 @@ A pod is a collection of containers sharing a network and mount namespace and is
 Lets create a simple nginx webserver.
 
 ```
-vi first-nginx-pod.yml
+$ vi first-nginx-pod.yml
 ```
 
 Copy and paste the following
@@ -35,7 +35,7 @@ Save and exit
 
 Create the pod, execute:
 ```
-kubectl apply -f first-nginx-pod.yml
+$ kubectl apply -f first-nginx-pod.yml
 ```
 
 We can now see the pod running:
@@ -103,11 +103,11 @@ Events:
 
 Lets find the IP address of the pod.
 ```
-kubectl describe pod <pod_name> | grep IP:
+$ kubectl describe pod <pod_name> | grep IP:
 ```
 
 ```
-[root@SR1G18Kube ~]# kubectl describe pod first-nginx-pod-5bb4787f8d-7ndj6 | grep IP:
+$ kubectl describe pod first-nginx-pod-5bb4787f8d-7ndj6 | grep IP:
 IP:           10.233.82.7
   IP:           10.233.82.7
 
