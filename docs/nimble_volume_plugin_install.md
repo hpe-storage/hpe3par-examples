@@ -12,6 +12,16 @@ Clone the latest Nimble Helm repo and deploy the HPE Nimble CSI Driver for Kuber
 $ git clone https://github.com/hpe-storage/co-deployments
 ```
 
+If you see the following error:
+```
+-bash: git: command not found
+```
+
+Run the following to install git:
+```
+yum install git -y
+```
+
 The output is similar to this:
 ```
 $ git clone https://github.com/hpe-storage/co-deployments
