@@ -9,54 +9,61 @@ Detailed instructions are available in the [FlexVolume Driver GitHub repository]
 
 In this demo, we will go deploy the FlexVolume plugin for Nimble Storage using Helm. Helm is the recommended way to deploy both the FlexVolume and CSI driver for HPE Nimble storage products.
 
-Create a `values.yml` file:
+Clone the latest Nimble Helm repo and deploy the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin:
 
 ```
-nano values.yml
+# git clone https://github.com/hpe-storage/co-deployments
 ```
 
-Copy and paste the following:
-```yaml
----
-backend: "<nimble_IP>"
-username: "admin"
-password: "admin"
-pluginType: "nimble"
-protocol: "iscsi"
-fsType: "xfs"
-storageClass:
+The output is similar to this:
+```
+# git clone https://github.com/hpe-storage/co-deployments
+# cd co-deployments/helm/charts/
+```
+
+Edit the `values.yaml` file and update the Nimble `backend` array parameter IP. Do not modify anything else.
+```
+# vi hpe-csi-driver/values.yaml
+
+Modify the following section.
+
+secret:
+  # parameters for nimble
   create: true
-  defaultClass: true
+  backend: <nimble_IP>
+  username: admin
+  password: admin
+  servicePort: "8080"
+  serviceName: nimble-csp-svc
+  name: nimble-secret
 ```
 
-Add Helm repo and deploy the HPE Nimble Volume Driver for Kubernetes FlexVolume Plugin:
-
+Install the Nimble CSI Driver Helm chart.
 ```
-helm repo add hpe https://hpe-storage.github.io/co-deployments
+# helm install nimble-csi hpe-csi-driver --namespace kube-system -f hpe-csi-driver/values.yaml
 ```
 
 The output is similar to this:
 ```
-$ helm repo add hpe https://hpe-storage.github.io/co-deployments
-"hpe" has been added to your repositories
-$ helm install -f values.yml --name hpe-flexvolume hpe/hpe-flexvolume-driver --version 3.0.0 --namespace kube-system
-NAME: hpe-flexvolume
-LAST DEPLOYED: Mon Sep 23 11:00:28 2019
+# helm install nimble-csi hpe-csi-driver --namespace kube-system -f hpe-csi-driver/values.yaml
+NAME: nimble-csi
+LAST DEPLOYED: Mon Mar  2 22:26:34 2020
 NAMESPACE: kube-system
-STATUS: DEPLOYED
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
 ```
 
-The `DaemonSet` workload type automatically deploys one replica of the FlexVolume driver on each node of the cluster and ensures all the host packages are installed and necessary services are running prior to serving the cluster. We can see this by querying the `DaemonSet`.
+Let's verify everything started up correctly:
 
 ```
-kubectl get ds/hpe-flexvolume-driver -n kube-system
-```
+# kubectl get pods -n kube-system | grep -e csi -e csp
 
-The output is similar to this:
-```
-$ kubectl get ds/hpe-flexvolume-driver -n kube-system
-NAME                    DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE  AGE
-hpe-flexvolume-driver   3         3         3       3            3          11m
+hpe-csi-controller-667578b549-5k58p        4/4     Running   0          98m
+hpe-csi-node-lgrmq                         2/2     Running   0          98m
+hpe-csi-node-snmqk                         2/2     Running   0          98m
+nimble-csp-b7676477-zhshc                  1/1     Running   0          98m
+
 ```
 
 Now let's test the deployment by creating a PVC.
@@ -64,7 +71,7 @@ Now let's test the deployment by creating a PVC.
 Create a `pvc.yml` file:
 
 ```
-nano pvc.yml
+# vi pvc.yml
 ```
 
 Copy and paste the following:
@@ -73,57 +80,56 @@ Copy and paste the following:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: my-pvc
+  name: mypvc
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 32Gi
+      storage: 16Gi
 ```
 
 Create the PVC:
 
 ```
-kubectl create -f pvc.yml
+# kubectl create -f pvc.yml
 ```
 
 The output is similar to this:
 ```
-$ kubectl create -f pvc.yml
+# kubectl create -f pvc.yml
 persistentvolumeclaim/my-pvc created
-$ kubectl get pvc/my-pvc
-NAME   STATUS VOLUME                 CAPACITY ACCESS MODES STORAGECLASS AGE
-my-pvc Bound  hpe-standard-9a87fb... 32Gi     RWO          hpe-standard 9s
+
+# kubectl get pvc
+NAME                          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mypvc                         Bound    pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8   16Gi       RWO            hpe-standard   72m
 ```
 
 We can see the new Persistent Volume created:
 ```
-hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
 ```
 
 We can inspect the PVC further for additional information by using the following commands:
 
 ```
-$ kubectl describe pvc my-pvc
+$ kubectl describe pvc mypvc
 ```
 
 The output is similar to this:
 ```
-kubectl describe pvc my-pvc
-Name:          my-pvc
+# kubectl describe pvc mypvc
+Name:          mypvc
 Namespace:     default
 StorageClass:  hpe-standard
 Status:        Bound
-Volume:        hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+Volume:        pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
 Labels:        <none>
-Annotations:   kubectl.kubernetes.io/last-applied-configuration:
-                 {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"my-pvc","namespace":"default"},"spec":{"accessModes...
-               pv.kubernetes.io/bind-completed: yes
+Annotations:   pv.kubernetes.io/bind-completed: yes
                pv.kubernetes.io/bound-by-controller: yes
-               volume.beta.kubernetes.io/storage-provisioner: hpe.com/nimble
+               volume.beta.kubernetes.io/storage-provisioner: csi.hpe.com
 Finalizers:    [kubernetes.io/pvc-protection]
-Capacity:      32Gi
+Capacity:      16Gi
 Access Modes:  RWO
 VolumeMode:    Filesystem
 Mounted By:    <none>
@@ -137,33 +143,49 @@ $ kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4
 
 The output is similar to this:
 ```
-kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
-Name:            hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
+# kubectl describe pvc mypvc
+Name:          mypvc
+Namespace:     default
+StorageClass:  hpe-standard
+Status:        Bound
+Volume:        pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
+Labels:        <none>
+Annotations:   pv.kubernetes.io/bind-completed: yes
+               pv.kubernetes.io/bound-by-controller: yes
+               volume.beta.kubernetes.io/storage-provisioner: csi.hpe.com
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      16Gi
+Access Modes:  RWO
+VolumeMode:    Filesystem
+Mounted By:    <none>
+Events:        <none>
+[root@DESKTOP-Q9AGN1K charts]# kubectl describe pv pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
+Name:            pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
 Labels:          <none>
-Annotations:     hpe.com/docker-volume-name: hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b
-                 pv.kubernetes.io/provisioned-by: hpe.com/nimble
-                 volume.beta.kubernetes.io/storage-class: hpe-standard
+Annotations:     pv.kubernetes.io/provisioned-by: csi.hpe.com
 Finalizers:      [kubernetes.io/pv-protection]
 StorageClass:    hpe-standard
 Status:          Bound
-Claim:           default/my-pvc
+Claim:           default/mypvc
 Reclaim Policy:  Delete
 Access Modes:    RWO
 VolumeMode:      Filesystem
-Capacity:        32Gi
+Capacity:        16Gi
 Node Affinity:   <none>
 Message:
 Source:
-    Type:       FlexVolume (a generic volume resource that is provisioned/attached using an exec based plugin)
-    Driver:     hpe.com/nimble
-    FSType:
-    SecretRef:  nil
-    ReadOnly:   false
-    Options:    map[description:Volume created by HPE Volume Driver for Kubernetes FlexVolume Plugin name:hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4b]
-Events:         <none>
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            csi.hpe.com
+    VolumeHandle:      0651af878ba1eb8064000000000000000000000001
+    ReadOnly:          false
+    VolumeAttributes:      accessProtocol=iscsi
+                           description=Volume created by the HPE CSI Driver for Kubernetes
+                           fsType=xfs
+                           storage.kubernetes.io/csiProvisionerIdentity=1583209935353-8081-csi.hpe.com
+                           volumeAccessMode=mount
 ```
 
-With the describe command  you can see the volume parameters applied to the volume.
+With the `describe` command, you can see the volume parameters applied to the volume.
 
 Let's recap what we have learned.
 
