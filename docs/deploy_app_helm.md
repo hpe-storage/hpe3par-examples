@@ -38,7 +38,8 @@ We will be using the stable/WordPress chart from the upstream repo. First we nee
 $ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 $ helm repo updated
 "stable" has been added to your repositories
-[root@DESKTOP-Q9AGN1K workspace]# helm repo update
+
+$ helm repo update
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "stable" chart repository
 ```
