@@ -137,7 +137,7 @@ token:      <your token will be shown here>
 ca.crt:     1025 bytes
 ```
 
-Switch back over to your browser and paste the token into the dashboard form then Click - Sign In.
+Switch back over to your browser and paste the **token** into the dashboard form then **Click - Sign In**.
 
 
 

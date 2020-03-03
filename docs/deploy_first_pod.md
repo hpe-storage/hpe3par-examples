@@ -3,7 +3,7 @@
 
 A pod is a collection of containers sharing a network and mount namespace and is the basic unit of deployment in Kubernetes. All containers in a pod are scheduled on the same node.
 
-Lets create a simple nginx webserver.
+Lets create a simple **nginx** webserver.
 
 ```
 $ vi first-nginx-pod.yml
@@ -159,7 +159,7 @@ Or modify the webpage:
 $ vi /usr/share/nginx/html/index.html
 ```
 
-Once done, exit the pod.
+Once done, exit the pod. Use **Ctrl+C** to exit the port-forwarding.
 
 
 **PREVIOUS:** [Exercise 2: Install Kubernetes Dashboard](dashboard.md)
