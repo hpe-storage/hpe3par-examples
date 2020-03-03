@@ -73,7 +73,7 @@ metadata:
 
 >Finally press **Ctrl+D**
 
->The command will then be executed.
+>The command will then be executed. You can use this method throughout these exercises.
 
 ---
 
