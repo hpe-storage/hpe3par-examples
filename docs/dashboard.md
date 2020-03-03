@@ -18,22 +18,28 @@ You can access Dashboard using `kubectl` from your desktop. Running this command
 ```
 $ kubectl proxy
 ```
-Kubectl will make Dashboard available at:
+
+Open a web browser, copy the following URL to access the Dashboard.
 ```
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
 
-The UI can only be accessed from the machine where the command is executed. See `kubectl proxy --help` for more options.
+The Dashboard UI can only be accessed from the machine where the command is executed. See `kubectl proxy --help` for more options.
+
+
+## Create the Admin Service Account
 
 To protect your cluster data, Dashboard deploys with a minimal RBAC configuration by default. Currently, Dashboard only supports logging in with a Bearer Token. To create a token for this demo, we will create an admin user.
 
-Open a second terminal, if you don't have one open already.
-
-## Create the Admin Service Account
 Warning: The admin user created in the tutorial will have administrative privileges and is for educational purposes only.
 
-Copy the code below into `dashboard-adminuser.yml` file
+Open a second terminal, if you don't have one open already. Create the following file:
 
+```
+$ vi dashboard-adminuser.yml
+```
+
+Copy the code below into `dashboard-adminuser.yml` file
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -47,6 +53,28 @@ Run `kubectl apply`:
 ```
 $ kubectl apply -f dashboard-adminuser.yml
 ```
+---
+>**Pro Tip** If you don't want to create a file everytime you want to create an object or deployment, you can run the **kubectl** command as follows:
+>```
+kubectl create -f-
+>```
+>Press **Enter** and you will be on a new line
+
+>Copy and paste the code block:
+>```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kube-system
+>```
+
+>Press **Enter**
+
+>Finally press **Ctrl+D**
+
+>The command will then be executed.
+---
 
 ### Create ClusterRoleBinding
 Let's create the ClusterRoleBinding for the new admin-user. We will apply the `cluster-admin` role to the `admin-user`.
