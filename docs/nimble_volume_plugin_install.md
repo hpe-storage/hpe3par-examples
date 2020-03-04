@@ -134,7 +134,7 @@ hpe-standard        csi.hpe.com   23h
 sc-gold (default)   csi.hpe.com   23s
 ```
 
->**Note:** We set sc-gold StorageClass as the default StorageClass using `storageclass.kubernetes.io/is-default-class: "true"`
+>**Note:** We set `sc-gold` StorageClass as default using `storageclass.kubernetes.io/is-default-class: "true"`
 >To learn more about configuring a default StorageClass.
 >[Default StorageClass](default_storageclass.md)
 
@@ -152,7 +152,7 @@ Copy and paste the following:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mypvc
+  name: my-pvc
 spec:
   accessModes:
   - ReadWriteOnce
@@ -176,10 +176,10 @@ persistentvolumeclaim/my-pvc created
 
 $ kubectl get pvc
 NAME                          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-mypvc                         Bound    pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8   16Gi       RWO            hpe-standard   72m
+my-pvc                         Bound    pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8   16Gi       RWO            hpe-standard   72m
 ```
 
->If you see the PVC status stuck in **Pending**, use `kubectl describe pvc mypvc` to find the error. Verify that the StorageClass is correctly defined.
+>If you see the PVC status stuck in **Pending**, use `kubectl describe pvc my-pvc` to find the error. Verify that the StorageClass is correctly defined.
 
 We can see the new Persistent Volume created:
 ```
@@ -189,38 +189,13 @@ pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
 We can inspect the PVC further for additional information by using the following commands:
 
 ```
-$ kubectl describe pvc mypvc
+$ kubectl describe pvc my-pvc
 ```
 
 The output is similar to this:
 ```
-$ kubectl describe pvc mypvc
-Name:          mypvc
-Namespace:     default
-StorageClass:  hpe-standard
-Status:        Bound
-Volume:        pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
-Labels:        <none>
-Annotations:   pv.kubernetes.io/bind-completed: yes
-               pv.kubernetes.io/bound-by-controller: yes
-               volume.beta.kubernetes.io/storage-provisioner: csi.hpe.com
-Finalizers:    [kubernetes.io/pvc-protection]
-Capacity:      16Gi
-Access Modes:  RWO
-VolumeMode:    Filesystem
-Mounted By:    <none>
-Events:        <none>
-```
-
-We can also inspect the volume in a similar manner:
-```
-$ kubectl describe pv hpe-standard-9a87fb4a-4b3b-441c-be46-7fc1b7cb5c4
-```
-
-The output is similar to this:
-```
-$ kubectl describe pvc mypvc
-Name:          mypvc
+$ kubectl describe pvc my-pvc
+Name:          my-pvc
 Namespace:     default
 StorageClass:  hpe-standard
 Status:        Bound
@@ -259,6 +234,43 @@ Source:
                            fsType=xfs
                            storage.kubernetes.io/csiProvisionerIdentity=1583209935353-8081-csi.hpe.com
                            volumeAccessMode=mount
+```
+
+We can also inspect the volume in a similar manner:
+```
+$ kubectl describe pv pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
+```
+
+The output is similar to this:
+```
+$ kubectl describe pv pvc-659a82a6-98bd-49c1-bf2e-6bcea66ae03a
+Name:            pvc-659a82a6-98bd-49c1-bf2e-6bcea66ae03a
+Labels:          <none>
+Annotations:     pv.kubernetes.io/provisioned-by: csi.hpe.com
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    sc-gold
+Status:          Bound
+Claim:           default/mypvc
+Reclaim Policy:  Delete
+Access Modes:    RWO
+VolumeMode:      Filesystem
+Capacity:        16Gi
+Node Affinity:   <none>
+Message:
+Source:
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            csi.hpe.com
+    VolumeHandle:      063aba3d50ec99d866000000000000000000000001
+    ReadOnly:          false
+    VolumeAttributes:      accessProtocol=iscsi
+                           allowOverrides=description,limitIops,performancePolicy
+                           description=Volume from HPE CSI Driver
+                           fsType=xfs
+                           limitIops=76800
+                           performancePolicy=SQL Server
+                           storage.kubernetes.io/csiProvisionerIdentity=1583271972595-8081-csi.hpe.com
+                           volumeAccessMode=mount
+Events:                <none>
 ```
 
 With the `describe` command, you can see the volume parameters applied to the volume.
