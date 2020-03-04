@@ -60,7 +60,7 @@ $ helm install my-wordpress stable/wordpress --version 9.0.1 --set service.type=
 
 It should look similar to this:
 ```
-$ helm install my-wordpress stable/wordpress --version 9.0.1 --set service.type=ClusterIP,persistence.storageClass=hpe-standard,ingress.enabled=true,ingress.hostname=wp.dev.g18.kubehol.net
+$ helm install my-wordpress stable/wordpress --version 9.0.1 --set service.type=ClusterIP,ingress.enabled=true,ingress.hostname=wp.dev.g18.kubehol.net
 NAME: my-wordpress
 LAST DEPLOYED: Mon Mar  2 23:33:46 2020
 NAMESPACE: default

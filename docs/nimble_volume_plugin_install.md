@@ -82,12 +82,63 @@ hpe-standard   csi.hpe.com   5m
 
 ```
 
->Learn how to set a default StorageClass.
+Now we will create our own StorageClass that we will use in the following exercises. Remember a `StorageClass` is similar to a Storage Profile and specifies the characteristics (such as Protection Templates, Performance Policies, etc) of the volume that we want to create.
+
+Create a `sc-gold.yml` file
+
+```
+$ vi sc-gold.yml
+```
+
+Copy and paste the following:
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: sc-gold
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: csi.hpe.com
+parameters:
+  csi.storage.k8s.io/fstype: xfs
+  csi.storage.k8s.io/provisioner-secret-name: nimble-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-publish-secret-name: nimble-secret
+  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/node-stage-secret-name: nimble-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-name: nimble-secret
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-expand-secret-name: nimble-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  performancePolicy: "SQL Server"
+  description: "Volume from HPE CSI Driver"
+  accessProtocol: "iscsi"
+  limitIops: "76800"
+  allowOverrides: description,limitIops,performancePolicy
+```  
+
+Save and exit.
+
+Create the StorageClass:
+```
+$ kubectl create sc-gold.yml
+```
+
+Now let's look at the available StorageClasses.
+
+```
+$ kubectl get sc
+NAME                PROVISIONER   AGE
+hpe-standard        csi.hpe.com   23h
+sc-gold (default)   csi.hpe.com   23s
+```
+
+>**Note:** We set sc-gold StorageClass as the default StorageClass using `storageclass.kubernetes.io/is-default-class: "true"`
+>To learn more about configuring a default StorageClass.
 >[Default StorageClass](default_storageclass.md)
 
-
-Now let's test the deployment by creating a PVC.
->**Note:** `storageClassName` is optional if you have a default `StorageClass` defined.
+We are now ready to creating a PVC.
 
 Create a `pvc.yml` file:
 
@@ -108,9 +159,9 @@ spec:
   resources:
     requests:
       storage: 16Gi
-  storageClassName: hpe-standard    
-
+#  storageClassName: hpe-standard
 ```
+>**Note:** We can use `storageClassName` to override the default `StorageClass` with another available `StorageClass`.
 
 Create the PVC:
 
