@@ -61,7 +61,7 @@ REVISION: 1
 TEST SUITE: None
 ```
 
-Let's verify everything started up correctly:
+Wait while the plugin deploys, this can take a few minutes. We can verify everything started up correctly:
 
 ```
 $ kubectl get pods -n kube-system | grep -e csi -e csp
@@ -73,7 +73,21 @@ nimble-csp-b7676477-zhshc                  1/1     Running   0          98m
 
 ```
 
+With the plugin deployed, we can look at the StorageClass that was created as part of the deployment.
+
+```
+$ kubectl get sc
+NAME           PROVISIONER   AGE
+hpe-standard   csi.hpe.com   5m
+
+```
+
+>Learn how to set a default StorageClass.
+>[Default StorageClass](default_storageclass.md)
+
+
 Now let's test the deployment by creating a PVC.
+>**Note:** `storageClassName` is optional if you have a default `StorageClass` defined.
 
 Create a `pvc.yml` file:
 
@@ -94,6 +108,8 @@ spec:
   resources:
     requests:
       storage: 16Gi
+  storageClassName: hpe-standard    
+
 ```
 
 Create the PVC:
@@ -107,10 +123,12 @@ The output is similar to this:
 $ kubectl create -f pvc.yml
 persistentvolumeclaim/my-pvc created
 
-# kubectl get pvc
+$ kubectl get pvc
 NAME                          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 mypvc                         Bound    pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8   16Gi       RWO            hpe-standard   72m
 ```
+
+>If you see the PVC status stuck in **Pending**, use `kubectl describe pvc mypvc` to find the error. Verify that the StorageClass is correctly defined.
 
 We can see the new Persistent Volume created:
 ```
