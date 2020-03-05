@@ -26,15 +26,15 @@ These playbooks perform the following tasks on the Master/Worker nodes as define
 
   - Clone the python-hpedockerplugin repository
     ```
-    cd ~/workspace
-    git clone https://github.com/hpe-storage/python-hpedockerplugin
-    cd python-hpedockerplugin/ansible_3par_docker_plugin
+    $ cd ~/workspace
+    $ git clone https://github.com/hpe-storage/python-hpedockerplugin
+    $ cd python-hpedockerplugin/ansible_3par_docker_plugin
     ```
 
 
   - Create the HPE 3PAR properties file `properties/plugin_configuration_properties.yml` based on your HPE 3PAR Storage array configuration. Some of the properties are mandatory and must be specified in the properties file while others are optional. You can see a sample properties file in the folder `properties/plugin_configuration_properties_sample.yml`
       ```
-      vi properties/plugin_configuration_properties.yml
+      $ vi properties/plugin_configuration_properties.yml
       ```
 For more information on supported parameters:
 https://github.com/hpe-storage/python-hpedockerplugin/tree/master/ansible_3par_docker_plugin
@@ -87,7 +87,7 @@ Modify the Ansible hosts file to define your Master/Worker nodes as well as wher
 
 Make sure you are in the `python-hpedockerplugin/ansible_3par_docker_plugin` directory.
 ```
-# vi hosts
+$ vi hosts
 ```
 
 Change this to match your group.
@@ -118,7 +118,7 @@ Save and exit
 Make sure you are in the `python-hpedockerplugin/ansible_3par_docker_plugin` directory.
 
 ```
-# ansible-playbook -i hosts install_hpe_3par_volume_driver.yml
+$ ansible-playbook -i hosts install_hpe_3par_volume_driver.yml
 ```
 
 Once complete you will be ready to start using the HPE 3PAR Volume Plug-in for Docker.
@@ -128,7 +128,7 @@ Once complete you will be ready to start using the HPE 3PAR Volume Plug-in for D
 Creating a default StorageClass
 
 ```yaml
-kubectl create -f - << EOF
+$ kubectl create -f - << EOF
 ---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -170,7 +170,7 @@ Use the **kubectl get pvc** command to view the PVC
 
 The output is similar to this:
 ```
-# kubectl get pvc
+$ kubectl get pvc
 NAME      STATUS  VOLUME                                         CAPACITY  ACCESS MODES  STORAGECLASS   AGE
 pvc-basic Bound   sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c0  32Gi     RWO           sc-basic       6s
 ```
@@ -183,7 +183,7 @@ sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
 We can inspect the PVC further for additional information by using the following commands:
 
 ```
-# kubectl describe pvc pvc-basic
+$ kubectl describe pvc pvc-basic
 ```
 The output is similar to this:
 ```
@@ -208,12 +208,12 @@ Events:
 
 We can also inspect the volume in a similar manner:
 ```
-# kubectl describe pv sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
+$ kubectl describe pv sc-basic-66d57a3e-6345-4c7f-a875-f3620b1274a0
 ```
 
 The output is similar to this:
 ```
-# oc describe pv sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
+$ kubectl describe pv sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
 Name:            sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
 Labels:          <none>
 Annotations:     hpe.com/docker-volume-name=sc-basic-b9e47260-045f-11ea-aaa4-0050569bb07c
