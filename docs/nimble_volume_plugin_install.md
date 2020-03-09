@@ -29,7 +29,7 @@ $ cd co-deployments/helm/charts/
 ```
 
 Edit the `values.yaml` file and update the Nimble `backend` array parameter IP. Do not modify anything else.
-```
+```yaml
 $ vi hpe-csi-driver/values.yaml
 
 ***Modify the following section.***
@@ -91,7 +91,7 @@ $ vi sc-gold.yml
 ```
 
 Copy and paste the following:
-```
+```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -193,7 +193,7 @@ $ kubectl describe pvc my-pvc
 ```
 
 The output is similar to this:
-```
+```yaml
 $ kubectl describe pvc my-pvc
 Name:          my-pvc
 Namespace:     default
@@ -242,7 +242,7 @@ $ kubectl describe pv pvc-70d5caf8-7558-40e6-a8b7-77dfcf8ddcd8
 ```
 
 The output is similar to this:
-```
+```yaml
 $ kubectl describe pv pvc-659a82a6-98bd-49c1-bf2e-6bcea66ae03a
 Name:            pvc-659a82a6-98bd-49c1-bf2e-6bcea66ae03a
 Labels:          <none>

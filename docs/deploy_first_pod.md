@@ -34,7 +34,7 @@ spec:
 Save and exit
 
 Create the pod, execute:
-```
+```bash
 $ kubectl apply -f first-nginx-pod.yml
 ```
 
@@ -48,7 +48,7 @@ first-nginx-pod-5bb4787f8d-7ndj6   1/1     Running   0          6m39s
 ```
 
 We can inspect the pod further using the **kubectl describe** command:
-```
+```yaml
 Name:         first-nginx-pod-5bb4787f8d-7ndj6
 Namespace:    default
 Priority:     0
@@ -157,6 +157,13 @@ Or modify the webpage:
 
 ```
 $ vi /usr/share/nginx/html/index.html
+```
+
+Due to containers only running the absolutely necessary binaries, some useful apps may be missing from the core container. If you see, "**bash: vi: command not found...**", then we need to install `vim`. 
+
+```
+$ apt update
+$ apt install vim -y
 ```
 
 Once done, exit the pod. Use **Ctrl+C** to exit the port-forwarding.
