@@ -162,8 +162,7 @@ $ vi /usr/share/nginx/html/index.html
 Due to containers only running the absolutely necessary binaries, some useful apps may be missing from the core container. If you see, "**bash: vi: command not found...**", then we need to install `vim`. 
 
 ```
-$ apt update
-$ apt install vim -y
+$ apt update && apt install vim -y
 ```
 
 Once done, exit the pod. Use **Ctrl+C** to exit the port-forwarding.
