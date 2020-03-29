@@ -8,8 +8,8 @@ The flow of the guide will be as follows:
 * [Exercise 1: Get to know your Kubernetes cluster](get_to_know_cluster.md)
 * [Exercise 2: Install Kubernetes Dashboard](dashboard.md)
 * [Exercise 3: Deploy your first pod](deploy_first_pod.md)
-* [Exercise 4: Deploy HPE 3PAR/Primera CSP Driver](3par_volume_plugin_install.md)
-* [Exercise 4: Deploy HPE Nimble CSP Driver](nimble_volume_plugin_install.md)
+* [Exercise 4: Deploy HPE 3PAR/Primera CSP Driver](3par_csp_driver_install.md)
+* [Exercise 4: Deploy HPE Nimble CSP Driver](nimble_csp_driver_install.md)
 * [Exercise 5: Deploying Persistent Apps (Wordpress) with Helm](deploy_app_helm.md)
 
 #### Optional Exercise

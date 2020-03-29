@@ -159,7 +159,7 @@ Or modify the webpage:
 $ vi /usr/share/nginx/html/index.html
 ```
 
-Due to containers only running the absolutely necessary binaries, some useful apps may be missing from the core container. If you see, "**bash: vi: command not found...**", then we need to install `vim`. 
+Due to containers only running the absolutely necessary binaries, some useful apps may be missing from the core container. If you see, "**bash: vi: command not found...**", then we need to install `vim`.
 
 ```
 $ apt update && apt install vim -y
@@ -170,4 +170,4 @@ Once done, exit the pod. Use **Ctrl+C** to exit the port-forwarding.
 
 **PREVIOUS:** [Exercise 2: Install Kubernetes Dashboard](dashboard.md)
 
-**NEXT:** [Exercise 4: Deploy HPE 3PAR/Primera CSI Driver](3par_volume_plugin_install.md) or [Deploy HPE Nimble CSI Driver](nimble_volume_plugin_install.md)
+**NEXT:** [Exercise 4: Deploy HPE 3PAR/Primera CSI Driver](3par_csp_driver_install.md) or [Deploy HPE Nimble CSI Driver](nimble_csp_driver_install.md)
