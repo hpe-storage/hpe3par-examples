@@ -19,15 +19,23 @@ metadata:
   name: custom
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
-provisioner: hpe.com/nimble
+provisioner: csi.hpe.com
 parameters:
+  csi.storage.k8s.io/fstype: xfs
+  csi.storage.k8s.io/provisioner-secret-name: nimble-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-publish-secret-name: nimble-secret
+  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/node-stage-secret-name: nimble-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-name: nimble-secret
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-expand-secret-name: nimble-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  accessProtocol: "iscsi"
   allowOverrides: "limitIOPS,perfPolicy,protectionTemplate,destroyOnRm,thick"
-  destroyOnRm: "false"
-  thick: "false"
   limitIOPS: "5000"
-  perfPolicy: "default"
-  protectionTemplate: "Retain-90Daily"
-reclaimPolicy: Delete
+  perfPolicy: "Retain-90Daily"
 ```
 
 This storage class meets the following objectives:
@@ -46,16 +54,15 @@ kind: PersistentVolumeClaim
 metadata:
   name: hpdb
   annotations:
-    hpe.com/thick: "true"
-    hpe.com/limitIOPS: "50000"
-    hpe.com/protectionTemplate: "Retain-48Hourly-30Daily-52Weekly"
-    hpe.com/perfPolicy: "SQL Server"
+    csi.hpe.com/description: "This is my custom db description"
+    csi.hpe.com/limitIops: "8000"
+    csi.hpe.com/performancePolicy: "Oracle OLTP"
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 4Gi
+      storage: 10Gi
   storageClassName: custom
 ```
 
@@ -68,8 +75,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: gpf
   annotations:
-    hpe.com/limitIOPS: "5000"
-    hpe.com/perfPolicy: "Windows File Server"
+    csi.hpe.com/limitIOPS: "5000"
+    csi.hpe.com/perfPolicy: "Windows File Server"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -87,9 +94,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: clone
   annotations:
-    hpe.com/limitIOPS: "1000"
-    hpe.com/destroyOnRm: "true"
-    hpe.com/cloneOfPVC: "hpdb"
+    csi.hpe.com/limitIOPS: "1000"
+    csi.hpe.com/destroyOnRm: "true"
+    csi.hpe.com/cloneOfPVC: "hpdb"
 spec:
   accessModes:
     - ReadWriteOnce
