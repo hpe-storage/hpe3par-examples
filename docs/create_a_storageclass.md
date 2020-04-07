@@ -25,12 +25,25 @@ metadata:
   name: database
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
-provisioner: hpe.com/nimble
+provisioner: csi.hpe.com
 parameters:
+  csi.storage.k8s.io/fstype: xfs
+  csi.storage.k8s.io/provisioner-secret-name: nimble-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-publish-secret-name: nimble-secret
+  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/node-stage-secret-name: nimble-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-name: nimble-secret
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-expand-secret-name: nimble-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  accessProtocol: "iscsi"
+  description: "Volume from csi"
+  dedupeEnabled: "false"
   allowOverrides: limitIOPS
-  limitIOPS: "10000"
+  limitIOPS: "76800"
   perfPolicy: "SQL Server"
-reclaimPolicy: Delete
 ```
 **Gotcha:** A Kubernetes cluster may have multiple storage classes marked "default" but will throw an error if a `PVC` is submitted without an explicit `storageClassName` set.
 
