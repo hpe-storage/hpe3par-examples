@@ -1,9 +1,8 @@
 # HPE 3PAR Examples  
 This is a collective repository of examples used for HPE 3PAR Storage container products and Automation tools like Ansible, Chef, Puppet.
 
-* Check out our Docker Volume Plugin here:
-  * [https://github.com/hpe-storage/python-hpedockerplugin](https://github.com/hpe-storage/python-hpedockerplugin)
-  * [https://store.docker.com/plugins/hpe-3par-docker-volume-plugin](https://store.docker.com/plugins/hpe-3par-docker-volume-plugin)
+* Check out the HPE CSI Driver the HPE 3PAR and HPE Primera Container Storage Provider here:
+  * [SCOD](https://scod.hpedev.io/)
 * Check out our Ansible Storage Module for 3PAR here:
   * [https://github.com/HewlettPackard/hpe3par_ansible_module](https://github.com/HewlettPackard/hpe3par_ansible_module)
 * Check out our Chef Cookbooks for 3PAR here:
