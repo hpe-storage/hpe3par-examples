@@ -17,7 +17,7 @@ This is a collective repository of examples used for HPE 3PAR Storage container 
   * blog post available [here](https://developer.hpe.com/blog/using-the-ssmccli-hpe-3par-ansible-module-with-virtual-domains).
 
 
-## Docker/Container Integrations:
+## Kubernetes/Docker Integrations:
 
 The majority of the documentation of the HPE CSI Driver and the HPE 3PAR and HPE Primera Container Storage Provider including the documentation has moved to [SCOD](https://scod.hpedev.io/). 
 
