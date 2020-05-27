@@ -19,9 +19,11 @@ This is a collective repository of examples used for HPE 3PAR Storage container 
 
 ## Docker/Container Integrations:
 
-* [HPE Kubernetes Training module](https://hpe-storage.github.io/hpe3par-examples/)
-* [Docker](containers/README.md)
-* [OpenShift/Kubernetes](containers/kubernetes-openshift/samples/README.md)
+The majority of the documentation of the HPE CSI Driver and the HPE 3PAR and HPE Primera Container Storage Provider including the documentation has moved to [SCOD](https://scod.hpedev.io/). 
+
+* [HPE Kubernetes Training module](https://scod.hpedev.io/learn/persistent_storage/index.html)
+* [Docker](https://scod.hpedev.io/flexvolume_driver/hpe_3par_primera_installer/index.html)
+* [Kubernetes](https://scod.hpedev.io/)
 
 
 
